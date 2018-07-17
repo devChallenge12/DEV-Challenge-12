@@ -1,0 +1,63 @@
+@import '../utilities/color';
+@import '../utilities/placeholder';
+
+// Base style (tag only)
+
+* {
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+html,
+body {
+  @extend %noIndent;
+}
+
+body {
+  background: $base-bg;
+  color: $base-text;
+}
+
+a {
+  background-color: transparent;
+  color: $base-link;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: darken($base-link, 10%);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+//// disable placeholder - onfocus/onblur effect
+//input[type='text'],
+//input[type='tel'],
+//input[type='email'],
+//input[type='password'],
+//input[type='search'],
+//textarea {
+//  &:focus {
+//    &::-webkit-input-placeholder {
+//      color: transparent !important;
+//    }
+//
+//    &::-moz-placeholder {
+//      color: transparent !important;
+//    }
+//
+//    &:-ms-input-placeholder {
+//      color: transparent !important;
+//    }
+//  }
+//}

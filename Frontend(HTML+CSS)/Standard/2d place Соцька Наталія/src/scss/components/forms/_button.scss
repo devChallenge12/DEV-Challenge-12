@@ -1,0 +1,58 @@
+@import '../../utilities/color';
+@import '../../utilities/fonts_var';
+
+// Buttons styles
+
+.button {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 1.8rem 3.6rem 1.6rem;
+  border: 0;
+  outline: none 0;
+  background-color: transparent;
+  font-family: $base-font-family;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all .4s ease-in-out 0s;
+  user-select: none;
+
+  &-primary {
+    border: {
+      width: .1rem;
+      style: solid;
+      color: $btn-primary;
+      radius: 3.2rem;
+    };
+    color: $btn-primary;
+
+    &.light {
+      border-color: $white;
+      color: $white;
+    }
+
+    &:hover,
+    &.active {
+      border-color: $btn-primary-hover;
+      background-color: $btn-primary-hover;
+      color: $white;
+    }
+  }
+
+  &-group {
+    text-align: center;
+  }
+}
+
+@media (min-width: $large-screen) {
+  .button {
+    padding: 2.6rem 5.4rem 2.4rem;
+  }
+}

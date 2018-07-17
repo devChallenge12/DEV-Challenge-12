@@ -1,0 +1,48 @@
+@import './variables';
+
+// Grid
+%container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: ($gutter-width / 2);
+  padding-left: ($gutter-width / 2);
+}
+
+%noIndent {
+  margin: 0;
+  padding: 0;
+}
+
+// Clear-fix
+%clearFix {
+  &::before,
+  &::after {
+    content: ' ';
+    display: table;
+  }
+  
+  &::after {
+    clear: both;
+  }
+}
+
+%textOverflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+%flexCenterChildren {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%fitBackground {
+  background: {
+    repeat: no-repeat;
+    position: center center;
+    size: cover;
+  };
+}

@@ -1,0 +1,220 @@
+[
+  [
+    {
+      "id": "1362587238",
+      "name": "Harry Potter and the Philosopher's Stone",
+      "author": "J. K. Rowling",
+      "publicationDate": "Wed Jan 01 1997 00:00:00 GMT+0200 (MSK)",
+      "isbn": "123123123",
+      "coverImageUrl": "https://www.scholastic.com/content5/media/products/27/9780590353427_mres.jpg"
+    },
+    {
+      "id": "1057948180",
+      "name": "The Lord of the Rings",
+      "author": "J. R. R. Tolkien",
+      "publicationDate": "Mon Jan 01 2001 02:00:00 GMT+0200 (MSK)",
+      "isbn": "456456456",
+      "coverImageUrl": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_UX182_CR0,0,182,268_AL_.jpg"
+    },
+    {
+      "id": "987648595",
+      "name": "JavaScript The Good Parts",
+      "author": "Douglas Crockford",
+      "publicationDate": "Sun Jan 01 2006 02:00:00 GMT+0200 (MSK)",
+      "isbn": "78787878",
+      "coverImageUrl": "https://cdn.cartu.ro/img/prod/440804-0.jpg"
+    }
+  ],
+  [
+    {
+      "id": "2694007157",
+      "name": "Vernadsky National Library Of Ukraine",
+      "address": " Голосіївський просп., 3, Kyiv, 03039",
+      "lat": "50.404238",
+      "lng": "30.518811",
+      "books": [
+        [
+          "1362587238",
+          null
+        ],
+        [
+          "1057948180",
+          [
+            {
+              "id": "3585448767",
+              "bookId": "1057948180",
+              "isAvailable": true
+            }
+          ]
+        ],
+        [
+          "987648595",
+          [
+            {
+              "id": "1594841042",
+              "bookId": "987648595",
+              "isAvailable": true
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "2786439328",
+      "name": "Specialized City Youth Library \"Young Guard\"",
+      "address": "Lva Tolstoho St, 49, Kyiv, 02000",
+      "lat": "50.440519",
+      "lng": "30.498830",
+      "books": [
+        [
+          "1362587238",
+          [
+            {
+              "id": "4044593560",
+              "bookId": "1362587238",
+              "isAvailable": true
+            }
+          ]
+        ],
+        [
+          "1057948180",
+          null
+        ],
+        [
+          "987648595",
+          [
+            {
+              "id": "2430323953",
+              "bookId": "987648595",
+              "isAvailable": true
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "313707842",
+      "name": "National Library of Parliament",
+      "address": "Mykhaila Hrushevskoho St, 1, Kyiv, 01601",
+      "lat": "50.460625",
+      "lng": "30.525237",
+      "books": [
+        [
+          "1362587238",
+          null
+        ],
+        [
+          "1057948180",
+          [
+            {
+              "id": "106617313",
+              "bookId": "1057948180",
+              "isAvailable": true
+            },
+            {
+              "id": "3787447057",
+              "bookId": "1057948180",
+              "isAvailable": true
+            },
+            {
+              "id": "1141799716",
+              "bookId": "1057948180",
+              "isAvailable": true
+            }
+          ]
+        ],
+        [
+          "987648595",
+          [
+            {
+              "id": "4139767042",
+              "bookId": "987648595",
+              "isAvailable": true
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "3708551322",
+      "name": "The Scientific and Technical Library",
+      "address": "просп. Перемоги, 37, Kyiv, 03056",
+      "lat": "50.449604",
+      "lng": "30.456439",
+      "books": [
+        [
+          "1362587238",
+          null
+        ],
+        [
+          "1057948180",
+          [
+            {
+              "id": "708386933",
+              "bookId": "1057948180",
+              "isAvailable": true
+            },
+            {
+              "id": "1977029739",
+              "bookId": "1057948180",
+              "isAvailable": true
+            }
+          ]
+        ],
+        [
+          "987648595",
+          [
+            {
+              "id": "3031056155",
+              "bookId": "987648595",
+              "isAvailable": true
+            },
+            {
+              "id": "2582449176",
+              "bookId": "987648595",
+              "isAvailable": true
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "814611180",
+      "name": "Biblioteka Im. P. Pancha",
+      "address": "Velyka Vasylkivska St, 90, Kyiv, 02000",
+      "lat": "50.429220",
+      "lng": "30.515454",
+      "books": [
+        [
+          "1362587238",
+          [
+            {
+              "id": "1573407873",
+              "bookId": "1362587238",
+              "isAvailable": true
+            },
+            {
+              "id": "2994905863",
+              "bookId": "1362587238",
+              "isAvailable": true
+            }
+          ]
+        ],
+        [
+          "1057948180",
+          null
+        ],
+        [
+          "987648595",
+          [
+            {
+              "id": "2956582716",
+              "bookId": "987648595",
+              "isAvailable": true
+            }
+          ]
+        ]
+      ]
+    }
+  ]
+]

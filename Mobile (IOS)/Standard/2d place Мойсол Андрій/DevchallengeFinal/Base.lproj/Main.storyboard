@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o9t-WA-vVi">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DevchallengeFinal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yZm-uZ-ijL">
+                                <rect key="frame" x="0.0" y="88" width="375" height="660"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPf-K5-q4y">
+                                <rect key="frame" x="0.0" y="748" width="375" height="30"/>
+                                <state key="normal" title="Select Effect"/>
+                                <connections>
+                                    <action selector="selectEffectPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EGs-rd-fc1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EPf-K5-q4y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3OU-yM-0gW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EPf-K5-q4y" secondAttribute="trailing" id="ERC-Im-DaZ"/>
+                            <constraint firstItem="yZm-uZ-ijL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FM2-0X-gX1"/>
+                            <constraint firstItem="EPf-K5-q4y" firstAttribute="top" secondItem="yZm-uZ-ijL" secondAttribute="bottom" id="GaT-oQ-fyJ"/>
+                            <constraint firstItem="EPf-K5-q4y" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Iw1-ar-3jE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yZm-uZ-ijL" secondAttribute="trailing" id="ptn-gd-KK2"/>
+                            <constraint firstItem="yZm-uZ-ijL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qtM-Sd-e5g"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9NT-qj-1Za">
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Save Image" id="tH6-wS-OhA">
+                            <connections>
+                                <action selector="saveImagePressed:" destination="BYZ-38-t0r" id="Ky0-za-H77"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Select Photo" id="cJc-gQ-ewy">
+                            <connections>
+                                <action selector="pickPhotoPressed:" destination="BYZ-38-t0r" id="mi8-oS-7Hf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="yZm-uZ-ijL" id="VeK-iP-Vyu"/>
+                        <outlet property="saveImageButton" destination="tH6-wS-OhA" id="vR9-KS-0ZL"/>
+                        <outlet property="selectEffectButton" destination="EPf-K5-q4y" id="UnQ-g2-FVt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="869.60000000000002" y="-597.75112443778119"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="avf-Nx-IY1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o9t-WA-vVi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e4u-jn-jMe">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lx6-5I-8aO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2qf-tx-iol" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="-580.65967016491754"/>
+        </scene>
+    </scenes>
+</document>

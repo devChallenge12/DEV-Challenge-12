@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for services\inmedia-distributor.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">services/</a> inmedia-distributor.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.88% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>22/69</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.14% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">29.85% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/67</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
+&nbsp;
+import 'rxjs/add/operator/toPromise';
+import 'jquery';
+// import '../../assets/conf/server.json';
+import {
+        serverTimeUrl,
+        // packageUrl,
+        // packageContentUrl,
+        // contentCollectionUrl,
+        mainUrl,
+        // restUrl,
+        // loginUrl,
+        jobUrl
+        } from '../../assets/conf/server.json';
+import { SynAuthService } from './syn-auth.service';
+@Injectable()
+export class InmediaDistributorService {
+    // inmedia distribution: packages
+    constructor(private <span class="cstat-no" title="statement not covered" >http: Http,</span>
+                private <span class="cstat-no" title="statement not covered" >synAuthService: SynAuthService<span class="fstat-no" title="function not covered" >)</span> {</span>
+                    let localization = <span class="cstat-no" title="statement not covered" >require('devextreme/localization');</span>
+                    let uaMessages = <span class="cstat-no" title="statement not covered" >require('../../assets/include/dx.messages.ua.json');</span>
+<span class="cstat-no" title="statement not covered" >                    localization.loadMessages(uaMessages);</span>
+                }
+&nbsp;
+    // public initREST () {
+    //     return this.http.get(loginUrl)
+    //     .toPromise();
+    // }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public checkServer() {</span>
+        // return this.http.get(serverTimeUrl) // fetch
+<span class="cstat-no" title="statement not covered" >        return this.http.get(mainUrl + 'rest/timestamp')</span>
+                .toPromise();
+    }
+&nbsp;
+    public getClips(searchText: string<span class="fstat-no" title="function not covered" >) {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/restservices/MaterialDistributionSearch';</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+<span class="cstat-no" title="statement not covered" >        return this.http.get(`${mainUrl}${path}?`</span>
+                             + `session_signature=${sessionSign}`
+                             + `&amp;ASearchText='${searchText}'`
+                             + `&amp;AMode=1&amp;AUserName=''`,
+                            { withCredentials: false })
+                                .toPromise();
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getPackages() {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/distrpackage';</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+        // let sessionSign = 3; // for test
+<span class="cstat-no" title="statement not covered" >        return this.http.get(`${mainUrl}${path}?`</span>
+                             + `session_signature=${sessionSign}&amp;select=*`,
+                            { withCredentials: false })
+                            .toPromise();
+    }
+&nbsp;
+    public addPackages(data: any<span class="fstat-no" title="function not covered" >) {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/distrpackage';</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+        // return this.http.post(`${packageUrl}`, JSON.stringify(data, null, 4))
+<span class="cstat-no" title="statement not covered" >        return this.http.post(`${mainUrl}${path}?session_signature=${sessionSign}`,</span>
+                              JSON.stringify(data, null, 4))
+                            .toPromise();
+    }
+&nbsp;
+    public changePackages(id: number, data: any<span class="fstat-no" title="function not covered" >) {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/distrpackage/' + id;</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+        // return this.http.put(`${packageUrl}/${id}`, JSON.stringify(data, null, 4))
+<span class="cstat-no" title="statement not covered" >        return this.http.put(`${mainUrl}${path}?session_signature=${sessionSign}`,</span>
+                             JSON.stringify(data, null, 4))
+        .toPromise();
+    }
+&nbsp;
+    public deletePackages(id: number<span class="fstat-no" title="function not covered" >) {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/distrpackage/' + id;</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+        // return this.http.delete(`${packageUrl}/${id}`)
+<span class="cstat-no" title="statement not covered" >        return this.http.delete(`${mainUrl}${path}?session_signature=${sessionSign}`)</span>
+        .toPromise();
+    }
+&nbsp;
+    public getContent(id: number<span class="fstat-no" title="function not covered" >) {</span>
+        // return this.http.get(`${contentCollectionUrl}?ASQL=SELECT%20*%20FROM%20`
+        //                      + `MATERIALS_SEARCH_DISTRIBUTION(${id},2)`,
+        let path = <span class="cstat-no" title="statement not covered" >'rest/restservices/MaterialDistributionSearch';</span> // 'rest/distrpackage'
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+        // let sessionSign = 3; // for test
+        // return this.http.get(`http://10.100.43.50:889/rest/distrpackage?`
+        //                      + `session_signature=${sessionSign}&amp;select=*`,
+        //                     { withCredentials: false })
+        //                     .toPromise();
+        // return this.http.get(`${contentCollectionUrl}?`
+<span class="cstat-no" title="statement not covered" >        return this.http.get(`${mainUrl}${path}?`</span>
+                            + `session_signature=${sessionSign}`
+                            + `&amp;ASearchText=${id}&amp;AMode=2&amp;AUserName=''`,
+        { withCredentials: false })
+        .toPromise();
+    }
+&nbsp;
+    public addContent(data: any<span class="fstat-no" title="function not covered" >) {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/distrpackagecontent';</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+<span class="cstat-no" title="statement not covered" >        return this.http.post(`${mainUrl}${path}?`</span>
+                              + `session_signature=${sessionSign}`, JSON.stringify(data, null, 4))
+        .toPromise();
+    }
+&nbsp;
+    public deleteContent(id: number<span class="fstat-no" title="function not covered" >) {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/distrpackagecontent/' + id;</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+<span class="cstat-no" title="statement not covered" >        return this.http.delete(`${mainUrl}${path}?session_signature=${sessionSign}`)</span>
+        .toPromise();
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getPackageContentList() {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/restservices/MaterialDistributionSearch';</span> // 'rest/distrpackage'
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+        // return this.http.get(`${packageContentUrl}?select=*`)
+<span class="cstat-no" title="statement not covered" >        return this.http.get(`${mainUrl}${path}?session_signature=${sessionSign}&amp;select=*`)</span>
+        .toPromise();
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getJobList() {</span>
+<span class="cstat-no" title="statement not covered" >        return this.http.get(`${jobUrl}?select=ID,name`)</span>
+        .toPromise();
+    }
+&nbsp;
+    public sendPackage(id, jobName<span class="fstat-no" title="function not covered" >) {</span>
+        let path = <span class="cstat-no" title="statement not covered" >'rest/restservices/SendPackageForProcessing';</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.synAuthService.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.synAuthService.sasSessionSign(path,</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+        // let id = 10;
+<span class="cstat-no" title="statement not covered" >        return this.http.get(`${mainUrl}${path}?`</span>
+                             + `session_signature=${sessionSign}`
+                            //  + `&amp;AMamJobId=1&amp;AMamJobName='${jobName}'&amp;APackegId=${id}`)
+                             + `&amp;AMamJobId=1&amp;AMamJobName=${jobName}&amp;APackegId=${id}`)
+        .toPromise();
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Apr 06 2018 14:17:12 GMT+0300 (FLE Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

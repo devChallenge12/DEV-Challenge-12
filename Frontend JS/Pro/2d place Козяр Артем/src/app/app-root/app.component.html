@@ -1,0 +1,28 @@
+<div class="app-root">
+
+  <div class="header">
+    <p>
+      Score: <b>{{score}}</b>
+    </p>
+    <p>
+      Level: <b>{{level}}</b>
+    </p>
+
+    <div *ngIf="spaceship?.isCrashed">
+      <h2 class="finish">The end.</h2>
+      <button (click)="start()">Start</button>
+    </div>
+
+  </div>
+
+  <div class="main">
+    <canvas #canvas class="canvas"></canvas>
+  </div>
+
+  <div [hidden]="true">
+    <img src="/assets/ship1.png" #shipImg>
+    <img src="/assets/strawberry.png" #strawberryImg>
+    <img src="/assets/bomb.png" #bombImg>
+  </div>
+
+</div>

@@ -1,0 +1,34 @@
+version: "2"
+services:
+   replica1:
+      build:
+         dockerfile: Dockerfile
+         context: .
+      ports:
+         - "8001:80"
+      environment:
+         - REPLICATIONS=replica2:80,replica3:80
+      restart: always
+   replica2:
+       build:
+          dockerfile: Dockerfile
+          context: .
+       ports:
+          - "8002:80"
+       environment:
+          - REPLICATIONS=replica1:80,replica3:80
+       restart: always
+   replica3:
+        build:
+           dockerfile: Dockerfile
+           context: .
+        ports:
+           - "8003:80"
+        environment:
+           - REPLICATIONS=replica1:80,replica2:80
+        restart: always
+   test:
+        build:
+           dockerfile: Dockerfile
+           context: .
+        command: go test

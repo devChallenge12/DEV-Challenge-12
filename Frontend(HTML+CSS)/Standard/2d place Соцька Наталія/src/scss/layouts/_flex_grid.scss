@@ -1,0 +1,127 @@
+@import '../utilities/variables';
+
+// Grid system
+.col-xs {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+}
+
+.xs-offset-0 {
+  margin-left: 0;
+}
+
+@for $i from 1 through $num-cols {
+  $width: percentage($i / $num-cols);
+  
+  .xs-#{$i} {
+    flex-basis: $width;
+    max-width: $width;
+  }
+  
+  .xs-offset-#{$i} {
+    margin-left: $width;
+  }
+}
+
+@each $j in (start, end) {
+  .#{$j}-xs {
+    justify-content: flex-#{$j};
+    text-align: $j;
+  }
+}
+
+@each $a in (around, between) {
+  .#{$a}-xs {
+    justify-content: space-#{$a};
+  }
+}
+
+.center-xs {
+  justify-content: center;
+  text-align: center;
+}
+
+.top-xs {
+  align-items: flex-start;
+}
+
+.middle-xs {
+  align-items: center;
+}
+
+.bottom-xs {
+  align-items: flex-end;
+}
+
+.first-xs {
+  order: -1;
+}
+
+.last-xs {
+  order: 1;
+}
+
+@each $screen, $letter in ($small-screen, s), ($medium-screen, m), ($large-screen, l), ($xlarge-screen, xl), ($xxlarge-screen, xxl) {
+  @media screen and (min-width: $screen) {
+    .col-#{$letter} {
+      flex-grow: 1;
+      flex-basis: 0;
+      max-width: 100%;
+    }
+    
+    .#{$letter}-offset-0 {
+      margin-left: 0;
+    }
+    
+    @for $i from 1 through $num-cols {
+      $width: percentage($i / $num-cols);
+      
+      .#{$letter}-#{$i} {
+        flex-basis: $width;
+        max-width: $width;
+      }
+      
+      .#{$letter}-offset-#{$i} {
+        margin-left: $width;
+      }
+    }
+    
+    @each $j in (start, end) {
+      .#{$j}-#{$letter} {
+        justify-content: flex-#{$j};
+        text-align: $j;
+      }
+    }
+    
+    @each $a in (around, between) {
+      .#{$a}-#{$letter} {
+        justify-content: space-#{$a};
+      }
+    }
+    
+    .center-#{$letter} {
+      justify-content: center;
+    }
+    
+    .top-#{$letter} {
+      align-items: flex-start;
+    }
+    
+    .middle-#{$letter} {
+      align-items: center;
+    }
+    
+    .bottom-#{$letter} {
+      align-items: flex-end;
+    }
+    
+    .first-#{$letter} {
+      order: -1;
+    }
+    
+    .last-#{$letter} {
+      order: 1;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FW</title>
+  <base href="/">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="The final work">
+
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="font-src * data:; default-src * 'unsafe-inline' 'unsafe-eval' data: blob: gap:;">
+
+
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="favicon.ico">
+
+  <meta
+    name="mobile-web-app-capable"
+    content="yes">
+
+  <meta
+    name="theme-color"
+    content="#1976d2">
+
+  <style rel="stylesheet">
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-size: 12px;
+      line-height: 1.2em;
+      font-family: Verdana, Arial, sans-serif;
+      background-color: #fff;
+    }
+
+    .loader {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-top: 8px solid #3498db;
+      border-right: 8px solid #ffe534;
+      border-bottom: 8px solid #02cb00;
+      border-left: 8px solid #ff4a8c;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    .loader-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <link
+    rel="manifest"
+    href="manifest.json">
+
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+    rel="stylesheet">
+
+</head>
+<body>
+
+<app-root>
+
+  <div class="loader-backdrop">
+    <div class="loader"></div>
+  </div>
+
+</app-root>
+
+</body>
+</html>

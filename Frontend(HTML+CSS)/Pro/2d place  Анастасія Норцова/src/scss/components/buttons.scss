@@ -1,0 +1,37 @@
+.btn {
+  display: inline-block;
+  background-color: $light-color;
+  display: flex;
+  align-items: center;
+  padding: 10px 27px 10px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: $text-color;
+  white-space: nowrap;
+  text-align: center;
+  justify-content: center;
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: .9;
+  }
+  &__icon {
+    margin-right: 13px;
+  }
+}
+
+.btn--main {
+  background-color: $main-color;
+  color: $lightest-color;
+}
+.btn--invert {
+  background-color: transparent;
+  color: $gray-color;
+  border: 1px solid $border-color;
+  &:hover {
+    background-color: rgba($border-color, .2);
+  }
+}
+.btn--squard {
+  border-radius: 3px;
+}

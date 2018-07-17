@@ -1,0 +1,34 @@
+[
+  {
+    "word": "А bad hair day",
+    "translate": "День, коли все валиться з рук",
+    "category": null,
+    "date": "22.01.2018",
+    "percent": 100,
+    "checked": false
+  },
+  {
+    "word": "Dog",
+    "translate": "Собака",
+    "category": "Тварини",
+    "date": "02.01.2018",
+    "percent": 93,
+    "checked": false
+  },
+  {
+    "word": "Sweater",
+    "translate": "Светр",
+    "category": "Одежа",
+    "date": "22.01.2018",
+    "percent": 48,
+    "checked": false
+  },
+  {
+    "word": "Breakfast",
+    "translate": "Сніданок",
+    "category": "Кухня",
+    "date": "22.01.2018",
+    "percent": 10,
+    "checked": false
+  }
+]

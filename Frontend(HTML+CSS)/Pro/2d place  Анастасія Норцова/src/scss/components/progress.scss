@@ -1,0 +1,12 @@
+.progress {
+  font-weight: bold;
+  &--success {
+    color: $success-color;
+  }
+  &--warn {
+    color: $warn-color;
+  }
+  &--danger {
+    color: $danger-color;
+  }
+}

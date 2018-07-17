@@ -1,0 +1,100 @@
+@import '../../utilities/color';
+@import '../../utilities/fonts_var';
+
+// Form elements styles
+
+input[type='tel'],
+input[type='text'],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='password'],
+textarea,
+select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: .6rem 2.6rem .6rem 0;
+  border: 0 {
+    bottom-width: .1rem;
+    style: solid;
+    color: $base-border;
+    radius: 0;
+  };
+  background: $input-bg;
+  color: $input-text;
+  font-size: 1.6rem;
+  font-weight: 500;
+
+  &::-webkit-input-placeholder {
+    color: $base-light-text;
+  }
+
+  &::-moz-placeholder {
+    color: $base-light-text;
+  }
+
+  &:-ms-input-placeholder {
+    color: $base-light-text;
+  }
+
+  &:focus {
+
+    &::-webkit-input-placeholder {
+      color: $base-text;
+    }
+
+    &::-moz-placeholder {
+      color: $base-text;
+    }
+
+    &:-ms-input-placeholder {
+      color: $base-text;
+    }
+  }
+}
+
+input {
+  &:focus {
+    border-bottom-color: $base-color;
+
+    + .icon {
+      color: rgba($base-color, .5);
+    }
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.input-field {
+  position: relative;
+  margin-bottom: 2.8rem;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 1.8rem;
+    transform: translateY(-50%);
+  }
+}
+
+@media (min-width: $xxlarge-screen) {
+  input[type='tel'],
+  input[type='text'],
+  input[type='email'],
+  input[type='number'],
+  input[type='search'],
+  input[type='password'],
+  textarea,
+  select {
+    padding: 2rem 3rem 2rem 0;
+  }
+}

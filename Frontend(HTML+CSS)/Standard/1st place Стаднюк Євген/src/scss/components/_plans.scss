@@ -1,0 +1,173 @@
+.plans {
+    position: relative;
+    padding: 140px 0 180px;
+    background: url('../img/project-types-bg.jpg') no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: $font;
+    text-align: center;
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+        background: $violet-two;
+        opacity: .7;
+    }
+
+    &__title {
+        position: relative;
+        z-index: 2;
+        color: $white;
+        font-size: 80px;
+        font-weight: $semi-bold;
+    }
+
+    &__slogan {
+        display: block;
+        position: relative;
+        z-index: 2;
+        margin-top: 30px;
+        color: $white;
+        font-size: 18px;
+        font-weight: $light;
+    }
+}
+
+.project-types {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    margin: 110px auto 0;
+    width: 90%;
+    max-width: 1000px;
+
+    &__item {
+        text-align: center;
+        color: $white;
+
+        &:hover {
+
+            .project-types {
+
+                &__image-container {
+
+                    &:before {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+
+    &__image-container {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        width: 130px;
+        height: 130px;
+
+        &:before {
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid $white;
+            border-radius: 50%;
+            content: '';
+            transition: transform $time;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__name {
+        display: block;
+        margin-top: 40px;
+        color: $white;
+        font-size: 24px;
+        font-weight: $semi-bold;
+    }
+
+    &__list {
+        margin-top: 45px;
+    }
+
+    &__list-item {
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-weight: $regular;
+
+        &--disabled {
+            text-decoration: line-through;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__btn {
+        @include btn($white);
+        margin-top: 45px;
+
+        &:hover {
+            background: $violet;
+            border-color: $violet;
+            color: $white;
+        }
+    }
+}
+
+
+@media (max-width: $tablet-portrait-width) {
+    .plans {
+
+        padding: 60px 15px 80px;  
+        
+        &__title {
+            font-size: 42px;
+        }
+
+        &__slogan {
+            font-size: 16px;
+            line-height: 1.3;
+        }
+    } 
+
+    .project-types {
+        display: block;
+        margin-top: 50px;
+        width: 100%;
+
+        &__item {
+            margin-bottom: 60px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &__name {
+            margin-top: 20px;
+        }
+
+        &__list {
+            margin-top: 25px;
+        }
+
+        &__btn {
+            margin-top: 35px;
+        }
+    }
+}

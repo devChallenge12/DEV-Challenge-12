@@ -1,0 +1,63 @@
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.first-screen {
+  position: relative;
+  display: flex;
+  flex-grow: 2;
+  color: $white;
+  text-align: center;
+
+  &-wrapper {
+    @extend %fitBackground;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url('../images/first-screen-bg.jpg');
+  }
+
+  .slider {
+    height: 100%;
+
+    .slide {
+      @extend %flexCenterChildren;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+
+  .main-sub-heading {
+    margin: 0 0 2.7rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.6rem;
+  }
+
+  .arrow-down {
+    position: absolute;
+    bottom: 5rem;
+    color: $white;
+    opacity: 0;
+    font-size: 2rem;
+    cursor: pointer;
+    animation: blink 2s linear infinite 2s;
+  }
+
+  .button-primary {
+    padding: 2.6rem 3.6rem 2.4rem;
+  }
+}
+
+@media (min-width: $medium-screen) {
+  .first-screen {
+
+    .main-sub-heading {
+      font-size: 3.6rem;
+      font-weight: 400;
+      line-height: 4.8rem;
+    }
+  }
+}

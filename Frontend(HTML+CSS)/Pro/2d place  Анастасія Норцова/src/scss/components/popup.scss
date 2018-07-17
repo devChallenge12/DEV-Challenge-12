@@ -1,0 +1,178 @@
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &--right {
+    justify-content: flex-end;
+    align-items: stretch;
+  }
+
+  display: none;
+  &.active {
+    display: flex;
+  }
+  overflow: auto;
+
+  &--column {
+    .popup__inner {
+
+      flex-direction: column;
+    }
+  }
+}
+
+.popup__inner {
+  background-color: $lightest-color;
+  width: 45%;
+  padding: 30px;
+  position: relative;
+  &--transparent {
+    background-color: transparent;
+  }
+  @media (max-width: $screen-md-max) {
+    width: 80%;
+  }
+  
+}
+.popup--big {
+  @media (max-width: $screen-sm-max) {
+    &.active {
+      display: block;
+    }
+  }
+  .popup__inner {
+    width: 80%;
+    @media (max-width: $screen-sm-max) {
+      width: 90%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.popup__buttons {
+  display: flex;
+  margin: 20px 0;
+  .btn {
+    border-radius: 0;
+    margin: 0 5px;
+  }
+}
+
+.invert-color {
+  color: $lightest-color;
+}
+
+.popup-field {
+  background-color: $lightest-color;
+  margin: 10px 0;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.popup-half {
+  width: 50%;
+  flex-basis: 50%;
+  padding: 0 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media (max-width: $screen-sm-max) {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+.popup-field--main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.popup-field__info {
+  padding: 10px 0;
+}
+
+.popup-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: $close-color;
+  &:before,
+  &:after {
+    content:'';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: $lightest-color;
+  }
+  &:before {
+    transform: translateY(-50%) translateX(-50%) rotate(45deg);
+  }
+  &:after {
+    transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  }
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.buttons-right {
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  .btn {
+    margin: 0 10px;
+  }
+}
+
+.popup-holder {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: $screen-md-max) {
+    flex-direction: column;
+  }
+}
+
+.progress-bar__list {
+  display: flex;
+  @media (max-width: $screen-sm-max) {
+    flex-direction: column;
+  }
+}
+.progress-bar__item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0 10px;
+  strong {
+    font-size: 2em;
+  }
+}
+.success {
+  color: $success-color;
+}
+.warn {
+  color: $warn-color;
+}
+.danger {
+  color: $danger-color;
+}

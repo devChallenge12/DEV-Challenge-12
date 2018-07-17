@@ -1,0 +1,26 @@
+// fonts-family
+$font-default: 'SourceSansProRegular', sans-serif;
+$font-semibold: 'SourceSansProSemiBold', sans-serif;
+$font-bold: 'SourceSansProBold', sans-serif;
+
+// colors
+$color-black: rgba(0, 0, 0, 1);
+$color-text: #1B1D1F;
+$color-blue: #11369E;
+$color-blue-hover: #11328D;
+$color-white: rgba(255, 255, 255, 1);
+$placeholder-color: rgba($color-black, .3);
+$page-backgroud: $color-white;
+$input-search-bg-color: #F5F5F8;
+$color-button-default-bg: #F5F5F8;
+$color-border: #E6E9ED;
+$color-light-dark: #525F76;
+
+// header
+$header-desktop-height: 86px;
+$header-mobile-height: 63px;
+
+//media
+$notebook: 1200px;
+$tablet: 960px;
+$mobile: 767px;

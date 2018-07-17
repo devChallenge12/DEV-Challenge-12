@@ -1,0 +1,24 @@
+/* @media (max-width: 1160px) {
+  .content-container {
+    width: 640px;
+    height: 960px;
+    background-color: coral;
+  }
+} */
+
+.content-container {
+  width: 640px;
+  height: 960px;
+  display: flex;
+  flex-direction: column;
+}
+
+.scoreboard {
+  height: 100px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}

@@ -1,0 +1,120 @@
+.input-search {
+  position: relative;
+}
+
+.input-search__input {
+  border: none;
+  background-color: $light-color;
+  padding: 12px 14px 12px 40px;
+  border-radius: 100px;
+  min-width: 220px;
+}
+
+.input-search__icon {
+  position: absolute;
+  top: 50%;
+  left: 17px;
+  transform: translateY(-50%);
+}
+
+
+.input-dropdown {
+  color: $gray-color;
+  position: relative;
+  margin: 0;
+  display: inline-block;
+  &:after {
+    content:"";
+    width: 4px;
+    height: 4px;
+    border-top: 1px solid $gray-color;
+    border-right: 1px solid $gray-color;
+    display: block;
+    transform: rotate(135deg);
+    position: absolute;
+    right: 0;
+    top: 45%;
+    transform-origin: 0 0;
+  }
+}
+.input-dropdown--underlined .input-dropdown__select {
+  border-bottom: 1px solid $light-color;
+}
+
+.input-dropdown__select {
+  margin: 0;
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  appearance:none;
+  padding: 10px 25px 10px 0;
+}
+
+.input-checkbox {
+  text-align: center;
+}
+
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-flow: column-reverse;
+	margin: 0;
+	label, input {
+		transition: all 0.2s;
+		touch-action: manipulation;
+	}
+
+	input {
+		font-size: 1em;
+		border: 0;
+		border-bottom: 1px solid $light-color;
+		font-family: inherit;
+		-webkit-appearance: none;
+		border-radius: 0;
+		padding: 5px 0;
+		cursor: text;
+	}
+
+	input:focus {
+		outline: 0;
+		border-bottom: 1px solid $gray-color;
+	}
+
+	label {
+		color: $gray-color;
+		font-size: .8em;
+		margin: 0 0 5px;
+	}
+	input:placeholder-shown + label,
+	textarea + label {
+		cursor: text;
+		max-width: 66.66%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		transform-origin: left bottom;
+		transform: translate(0, 24px) scale(1.2);
+		color: $main-color;
+	}
+	::-webkit-input-placeholder {
+		opacity: 0;
+	}
+	input:focus + label,
+	textarea:focus + label {
+		transform: translate(0, 0) scale(1);
+		cursor: pointer;
+		color: $gray-color;
+	}
+	&__error {
+      position: absolute;
+      left: 0;
+      bottom: 5px;
+      width: 100%;
+      color: $danger-color;
+      font-size: .7rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+}

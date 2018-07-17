@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-less": "^3.3.2",
+    "gulp-rename": "^1.2.2"
+  }
+}

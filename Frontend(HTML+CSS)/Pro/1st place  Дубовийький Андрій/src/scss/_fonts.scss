@@ -1,0 +1,5 @@
+@import "_mixins/font-face";
+
+@include font-face("SourceSansProRegular", "../fonts/Source_Sans_Pro/SourceSansProRegular");
+@include font-face("SourceSansProSemiBold", "../fonts/Source_Sans_Pro/SourceSansProSemiBold");
+@include font-face("SourceSansProBold", "../fonts/Source_Sans_Pro/SourceSansProBold");

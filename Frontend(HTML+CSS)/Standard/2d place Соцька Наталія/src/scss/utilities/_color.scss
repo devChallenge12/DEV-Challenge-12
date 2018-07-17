@@ -1,0 +1,28 @@
+@import './colors/project_default';
+
+// Base ------------------
+$base-color               : color('state', 'violet');
+
+$base-bg                  : $white;
+$base-text                : color('default', 'dark-gray');
+$base-light-text          : color('default', 'light-gray');
+$base-link                : color('default', 'gray');
+$base-link-hover          : $base-color;
+$base-border              : color('default', 'gray');
+// -----------------------
+
+// General ---------------
+$hamburger-bg             : $white;
+// -----------------------
+
+// Buttons ---------------
+$btn-primary              : color('default', 'dark-gray');;
+$btn-primary-hover        : $base-color;
+// -----------------------
+
+// Forms -----------------
+$input-bg                 : $white;
+$input-text               : $base-light-text;
+$input-text-focus         : $base-text;
+// -----------------------
+

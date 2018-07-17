@@ -1,0 +1,30 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "description": "My First Gulp Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "WebDesign Master",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^*",
+    "del": "^*",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^*",
+    "gulp-cache": "^*",
+    "gulp-concat": "^*",
+    "gulp-cssnano": "^*",
+    "gulp-imagemin": "^*",
+    "gulp-plumber": "^*",
+    "gulp-rename": "^*",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglifyjs": "^*",
+    "gulp.spritesmith": "^*",
+    "imagemin-pngquant": "^*"
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^*"
+  }
+}

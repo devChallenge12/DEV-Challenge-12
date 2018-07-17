@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Dev Challange</title>
+	<style>
+$main-color: #11369E;
+$success-color: #189947;
+$warn-color: #DDA541;
+$danger-color: #BC3030;
+$border-color: #E6E9ED;
+$light-color: #F5F5F8;
+$lightest-color: #FFFFFF;
+$text-color: #1B1D1F;
+$gray-color: #525F76;
+$disabled-color: rgba(82, 95, 118, 0.4);
+$close-color: #282E3E;
+
+* {
+  box-sizing: border-box;
+}
+
+.main-holder {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+}
+.sidebar {
+  min-width: 280px;
+}
+.left-sidebar {
+  padding: 30px 30px;
+  background: $main-color;
+  color: $lightest-color;
+  a {
+    color: $lightest-color;
+  }
+  .logo {
+    padding-bottom: 28px;
+  }
+}
+
+.btn {
+  display: inline-block;
+  background-color: $light-color;
+  display: flex;
+  align-items: center;
+  padding: 10px 27px 10px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: $text-color;
+  white-space: nowrap;
+  text-align: center;
+  justify-content: center;
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: .9;
+  }
+  &__icon {
+    margin-right: 13px;
+  }
+}
+
+.btn--main {
+  background-color: $main-color;
+  color: $lightest-color;
+}
+.btn--invert {
+  background-color: transparent;
+  color: $gray-color;
+  border: 1px solid $border-color;
+  &:hover {
+    background-color: rgba($border-color, .2);
+  }
+}
+.btn--squard {
+  border-radius: 3px;
+}
+</style>
+	<link rel="preload" href="css/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="css/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript>
+		<link rel="stylesheet" href="css/fonts.css">
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/main.css">
+	</noscript>
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#317EFB"/>
+</head>
+<body class="body">
+
+
+	<div class="main-holder">
+		<button type="button" class="btn btn--main btn-settings"><img src="images/icons/settings.svg" alt=""></button>
+		<aside class="left-sidebar sidebar">
+			<button class="btn-settings-close popup-close"></button>
+			<div class="logo"><img src="images/icons/logo.svg" alt=""> <i class="icon icon-logo"></i></div>
+			<div class="left-sidebar__menu">
+					<h3 class="left-sidebar__heading">Профіль</h3>
+					<ul class="left-sidebar__list sidebar-list">
+							<li class="sidebar-list__item"><a class="sidebar-list__link" href="#"><img class="sidebar-list__icon"src="images/icons/user.svg" alt=""> Мій профіль</a></li>
+							<li class="sidebar-list__item"><a class="sidebar-list__link" href="#"><img class="sidebar-list__icon"src="images/icons/notify.svg" alt=""> Оповіщення</a></li>
+							<li class="sidebar-list__item"><a class="sidebar-list__link" href="#"><img class="sidebar-list__icon"src="images/icons/settings.svg" alt=""> Налаштування</a></li>
+						</ul>
+						<h3 class="left-sidebar__heading">Словник</h3>
+						<ul class="left-sidebar__list sidebar-list">
+								<li class="sidebar-list__item"><a class="sidebar-list__link" href="#"><img class="sidebar-list__icon"src="images/icons/pen.svg" alt=""> Мій словник</a></li>
+								<li class="sidebar-list__item"><a class="sidebar-list__link" href="#"><img class="sidebar-list__icon"src="images/icons/test.svg" alt=""> Тестування</a></li>
+								<li class="sidebar-list__item"><a class="sidebar-list__link" href="#"><img class="sidebar-list__icon"src="images/icons/archive.svg" alt=""> Архів</a></li>
+						</ul>
+			</div>
+			<div class="logout"><a class="logout__link" href="#"><img class="logout__icon" src="images/icons/exit.svg" alt="">  Вийти</a></div>
+			<footer class="left-sidebar__footer">
+				<div>&copy; 2018 - prelpay.com</div>
+				<div>All rights reserved</div>
+			</footer>
+		</aside>
+		<section class="main-section">
+			<header class="main-section__header">
+					<div class="main-section__info">
+						<h1 class="main-section__heading">
+							Мій словник
+						</h1>
+						<div class="main-section__description">
+							У цей інтерактивний словник Ви можете додавати невідомі слова чи фрази, слідкувати за прогресом їх вивчення та дізнатись про них більш детальну інформацію
+						</div>
+					</div>
+				<a href="#" class="btn btn--main main-section__add-btn add-popup-link"><img class="btn__icon" src="images/icons/plus.svg" alt=""> Додати слово / фразу</a>
+			</header>
+			<aside class="sub-menu">
+				<div class="sub-menu__inputs">
+						<div class="input-search">
+							<img class="input-search__icon" src="images/icons/search.svg" alt="">
+							<input class="input-search__input" type="text" name="search">
+						</div>
+						<div class="input-dropdown">
+							<select class="input-dropdown__select" name="date">
+								<option value="all">Всі дати</option>
+							</select>
+						</div>
+						<div class="input-dropdown">
+							<select class="input-dropdown__select"  name="category">
+								<option value="all">Всі категорії</option>
+							</select>
+						</div>
+				</div>
+				<div class="catalog-view">
+					<a href="#" class="catalog-view__item"><img src="images/icons/grid-icon.svg" alt=""></a>
+					<a href="#" class="catalog-view__item catalog-view__item--active"><img src="images/icons/line-icon.svg" alt=""></a>
+				</div>
+			</aside>
+			<div class="category-holder">
+				<section class="category" id="category-inner">
+					<header class="category__header">
+						<div class="category__cell">
+							<div class="input-checkbox">
+									<input class="input-checkbox__input" type="checkbox">
+							</div>
+						</div>
+						<div class="category__cell">
+							Оригінал
+						</div>
+						<div class="category__cell">
+							Переклад
+						</div>
+						<div class="category__cell">
+							Категорія
+						</div>
+						<div class="category__cell">
+								Дата
+						</div>
+						<div class="category__cell">
+								Прогрес
+						</div>
+					</header>
+					<div class="category__item">
+							<div class="category__cell">
+								<div class="input-checkbox">
+										<input class="input-checkbox__input" type="checkbox">
+								</div>
+							</div>
+							<div class="category__cell">
+								А bad hair day
+							</div>
+							<div class="category__cell">
+								День, коли все валит
+							</div>
+							<div class="category__cell">
+								<div class="disabled-category">
+										Не обрана
+								</div>
+							</div>
+							<div class="category__cell">
+								22.01.2018
+							</div>
+							<div class="category__cell">
+								<div class="progress progress--success">100%</div>
+							</div>
+					</div>
+					<div class="category__item">
+							<div class="category__cell">
+								<div class="input-checkbox">
+										<input class="input-checkbox__input" type="checkbox">
+								</div>
+							</div>
+							<div class="category__cell">
+								А bad hair day
+							</div>
+							<div class="category__cell">
+								День, коли все валит
+							</div>
+							<div class="category__cell">
+								<div class="disabled-category">
+										Не обрана
+								</div>
+							</div>
+							<div class="category__cell">
+								22.01.2018
+							</div>
+							<div class="category__cell">
+								<div class="progress progress--success">100%</div>
+							</div>
+					</div>
+					<div class="category__item">
+							<div class="category__cell">
+								<div class="input-checkbox">
+										<input class="input-checkbox__input" type="checkbox">
+								</div>
+							</div>
+							<div class="category__cell">
+								А bad hair day
+							</div>
+							<div class="category__cell">
+								День, коли все валит
+							</div>
+							<div class="category__cell">
+								<div class="disabled-category">
+										Не обрана
+								</div>
+							</div>
+							<div class="category__cell">
+								22.01.2018
+							</div>
+							<div class="category__cell">
+								<div class="progress progress--success">100%</div>
+							</div>
+					</div>
+				</section>
+			</div>
+			<div class="block-center">
+				<a href="#" class="btn">Завантажити ще (52)</a>
+			</div>
+		</section>
+	</div>
+	<header class="header" id="header">
+			<div class="sidebar">
+					<div class="header__logo">
+						<img src="images/icons/logo-colored.svg" alt="">
+					</div>
+			</div>
+			<div class="main-section">
+					<aside class="sub-menu">
+							<div class="sub-menu__inputs">
+									<div class="input-search">
+										<img class="input-search__icon" src="images/icons/search.svg" alt="">
+										<input class="input-search__input" type="text" name="search">
+									</div>
+									<div class="input-dropdown">
+										<select class="input-dropdown__select" name="date">
+											<option value="all">Всі дати</option>
+										</select>
+									</div>
+									<div class="input-dropdown">
+										<select class="input-dropdown__select"  name="category">
+											<option value="all">Всі категорії</option>
+										</select>
+									</div>
+							</div>
+							<div>
+									<a href="#" class="btn btn--main add-popup-link"><img class="btn__icon" src="images/icons/plus.svg" alt=""> Додати слово / фразу</a>
+							</div>
+						</aside>
+			</div>
+		</header>
+	<section class="panel" id="panel">
+		<div class="panel__buttons">
+			<a href="#" class="btn btn--invert">Вибрати всі</a>
+			<a href="#" class="btn btn--invert">Зняти виділення</a>
+			<span class="selected">Вибрано: <strong>2</strong></span>
+		</div>
+		<a href="#" class="btn btn--main">Відправити обране в архів</a>
+	</section>
+	<section class="popup popup--right" id="add-popup">
+		<div class="popup__inner">
+			<a href="#" id="close-add-popup" class="arrow-btn">Повернутись до словника</a>
+			<h2>Додайте слово</h2>
+			<p>Додайте слово або фразу, які ви хочете запам’ятати. Далі ви зможете повторювати додані слова у режимі тестування</p>
+			<form action="#" id="formAddItemToCatalog">
+				<div class="input-group">
+					<input type="text" id="original" name="word" placeholder="Оригінал" required>
+					<label for="original">Оригінал</label>
+				</div>
+				<div class="input-group">
+					<input type="text" id="translate" name="translate" placeholder="Переклад" required>
+					<label for="translate">Переклад</label>
+				</div>
+				<div class="input-dropdown input-dropdown--underlined" width="50%">
+						<select class="input-dropdown__select" name="category">
+							<option value="all" dispabled>Без категорії</option>
+							<option value="all">Категорія 1</option>
+							<option value="all">Категорія 2</option>
+							<option value="all">Категорія 3</option>
+							<option value="all">Категорія 4</option>
+						</select>
+					</div>
+					<div class="popup__buttons">
+							<button class="btn btn--main">Підтвердити</button>
+							<button type="button" class="btn">Відмінити</button>
+					</div>
+			</form>
+		</div>
+	</section>
+	<section class="popup popup--big popup--column" id="info-popup">
+		<div class="popup__inner popup__inner--transparent flex">
+			<a href="#" id="close-info-popup" class="popup-close"></a>
+				<div class="popup-holder">
+					<div class="popup-half">
+							<h2 class="invert-color">Оригінал:</h2>
+							<div class="popup-field">
+									Design
+							</div>
+							<div class="popup-field popup-field--main">
+									<div class="popup-field__info">
+											<span class="sub-title">Визначення</span>
+											<h3>Іменник</h3>
+											<p>a plan or drawing produced to show the look and function or workings of a building, garment, or other object before it is built or made.</p>
+											<div class="example">«he has just unveiled his design for the new museum</div>
+											<div class="example">синонимы: plan, blueprint, drawing, sketch, outline, map, plot, diagram, draft, representation»</div>
+											<div class="sinonyms"><strong>синоніми</strong>: plan, blueprint, drawing, sketch, outline, map …</div>
+									</div>
+									<a href="#" class="btn btn--full btn--squard ">Інші варіанти</a>
+							</div>
+					</div>
+					<div class="popup-half">
+						<h2  class="invert-color">Переклад:</h2>
+						<div class="popup-field">
+								Дизайн
+						</div>
+						<div class="popup-field popup-field--main">
+								<div class="popup-field__info">
+										<span class="sub-title">Варіанти перекладу</span>
+										<h3>Іменник</h3>
+										<table>
+											<tr>
+												<td>задум</td>
+												<td>plan, conception, design, aim</td>
+											</tr>
+											<tr>
+												<td>замір</td>
+												<td>intention, design, premeditation</td>
+											</tr>
+										</table>
+										<h3>Дієслово</h3>
+										<table>
+											<tr>
+												<td>задумувати</td>
+												<td>conceive, compose, design, agitate</td>
+											</tr>
+											<tr>
+												<td>конструювати</td>
+												<td>design, construct, build, erect</td>
+											</tr>
+											<tr>
+												<td>мати намір</td>
+												<td>intend, mean, contemplate, have in mi…</td>
+											</tr>
+											<tr>
+												<td>оформляти</td>
+												<td>design, form, formalize, effect, shape, …</td>
+											</tr>
+										</table>
+								</div>
+								<a href="#" class="btn btn--full btn--squard ">Інші варіанти</a>
+						</div>
+					</div>
+				</div>
+
+			<div class="buttons-right">
+				<a href="#" class="btn">Відправити в архів</a>
+				<a href="#" class="btn">Редагувати</a>
+			</div>
+			<div>
+				<h2 class="invert-color">Ваш прогрес:</h2>
+				<div class="progress-bar popup-field">
+					<div class="progress-bar__list">
+						<div class="progress-bar__item">
+								<span>Кількість відповідей</span>
+								<strong>56</strong>
+						</div>
+						<div class="progress-bar__item">
+								<span>Правильних відповідей</span>
+								<strong>51</strong>
+						</div>
+						<div class="progress-bar__item">
+								<span>Процент правильних відповідей</span>
+								<strong class="success">91.07%</strong>
+						</div>
+					</div>
+					<a href="#" class="btn btn--main btn--squard">Перейти до тестування</a>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<script type="text/javascript" src="js/app.js"></script>
+	
+		<script async>
+			if ('serviceWorker' in navigator) {
+			 window.addEventListener('load', function() {  
+				 navigator.serviceWorker.register('sw.js').then(
+					 function(registration) {
+						 // Registration was successful
+						 console.log('ServiceWorker registration successful with scope: ', registration.scope); },
+					 function(err) {
+						 // registration failed :(
+						 console.log('ServiceWorker registration failed: ', err);
+					 });
+			 });
+			}
+			</script>
+</body>
+</html>

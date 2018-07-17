@@ -1,0 +1,71 @@
+.plans {
+  @extend %fitBackground;
+  margin-top: 5rem;
+  padding: 5rem 0 7rem;
+  background-image: url('../images/background.jpg');
+  color: $white;
+  text-align: center;
+}
+
+.package {
+  margin-bottom: 4rem;
+
+  &-icon {
+    width: 15rem;
+    margin: 0 auto 2.7rem;
+    padding: 1rem;
+    border-radius: 50%;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    &.active {
+      border: {
+        width: .1rem;
+        style: solid;
+        color: $white;
+      };
+    }
+  }
+
+  &-name {
+    margin-bottom: 1.6rem;
+    font-size: 2rem;
+  }
+
+  &-feature {
+    line-height: 3rem;
+
+    &-list {
+      margin-bottom: 2rem;
+    }
+
+    &.unavailable {
+      text-decoration: line-through;
+    }
+  }
+}
+
+@media (min-width: $xxlarge-screen) {
+  .plans {
+    margin-top: 15rem;
+    padding: 14.6rem 0 18.4rem;
+  }
+
+  .package {
+    margin-bottom: 0;
+
+    &-name {
+      margin-bottom: 3rem;
+      font-size: 2.4rem;
+    }
+
+    &-feature {
+      &-list {
+        margin-bottom: 3.6rem;
+      }
+    }
+  }
+}

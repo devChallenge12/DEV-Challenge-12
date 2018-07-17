@@ -1,0 +1,32 @@
+.header {
+  position: fixed;
+  z-index: 10000;
+  background-color: $lightest-color;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  transition: transform .4s ease;
+  transform: translateY(-100%);
+  .sidebar {
+    display: flex;
+  }
+  .main-section {
+    padding: 0 30px;
+  }
+  .sub-menu {
+    margin: 15px 0;
+  }
+  &.active {
+    transform: translateY(0);
+  }
+  @media (max-width: $screen-md-max) {
+    display: none;
+  }
+}
+
+.header__logo {
+  padding:  0 10px;
+  display: flex;
+  align-items: center;
+}

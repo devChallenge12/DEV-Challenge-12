@@ -1,0 +1,125 @@
+@import '../utilities/variables';
+
+// Classes state (for JS). Can use "!important"
+
+.hide {
+  display: none !important;
+
+  @media (max-width: $small-screen-down) {
+    &-xs {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: $small-screen) and (max-width: $medium-screen-down) {
+    &-s {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: $medium-screen) and (max-width: $large-screen-down) {
+    &-m {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: $large-screen) and (max-width: $xlarge-screen-down) {
+    &-l {
+      display: none !important;
+    }
+  }
+  
+  @media (min-width: $xlarge-screen) and (max-width: $xxlarge-screen-down) {
+    &-xl {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: $xxlarge-screen) {
+    &-xxl {
+      display: none !important;
+    }
+  }
+}
+
+.show {
+  display: block !important;
+
+  &-xs,
+  &-s,
+  &-m,
+  &-l,
+  &-xl,
+  &-xxl {
+    display: none !important;
+  }
+
+  @media (max-width: $small-screen-down) {
+    &-xs {
+      display: block !important;
+    }
+  }
+
+  @media (min-width: $small-screen) and (max-width: $medium-screen-down) {
+    &-s {
+      display: block !important;
+    }
+  }
+
+  @media (min-width: $medium-screen) and (max-width: $large-screen-down) {
+    &-m {
+      display: block !important;
+    }
+  }
+
+  @media (min-width: $large-screen) and (max-width: $xlarge-screen-down) {
+    &-l {
+      display: block !important;
+    }
+  }
+  
+  @media (min-width: $xlarge-screen) and (max-width: $xxlarge-screen-down) {
+    &-xl {
+      display: block !important;
+    }
+  }
+
+  @media (min-width: $xxlarge-screen) {
+    &-xxl {
+      display: block !important;
+    }
+  }
+}
+
+.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.align {
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-justify {
+    text-align: justify;
+  }
+}
+
+.overflow {
+  &-hidden {
+    overflow: hidden !important;
+  }
+
+  &-auto {
+    overflow: auto !important;
+  }
+}

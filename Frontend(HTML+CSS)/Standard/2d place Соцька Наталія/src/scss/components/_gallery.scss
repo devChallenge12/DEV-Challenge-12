@@ -1,0 +1,114 @@
+.gallery {
+  display: grid;
+  margin: 3rem 0;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(9, 27rem);
+  grid-gap: 1.6rem;
+
+  &-item {
+    @extend %fitBackground;
+    position: relative;
+    background-size: 110%;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(.23, 1, .32, 1) 0ms;
+
+    &:hover {
+      background-size: 150%;
+
+      .image-info {
+        background-image: linear-gradient(to bottom, transparent 0%, rgba(#14171d, .6) 100%);
+      }
+    }
+  }
+
+  .image-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.6rem 2rem;
+    background-image: linear-gradient(to bottom, transparent 0%, rgba(#14171d, .4) 100%);
+    color: $white;
+    transition: background-image 300ms cubic-bezier(.23, 1, .32, 1) 0ms;
+
+
+    .name {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    .tag {
+      display: block;
+      font-size: 2rem;
+      font-weight: 400;
+    }
+  }
+}
+
+@media (min-width: $medium-screen) {
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 30rem);
+    grid-gap: 2rem;
+
+    &-item {
+      &:nth-child(4) {
+        grid-row-start: span 2;
+      }
+    }
+  }
+}
+
+@media (min-width: $large-screen) {
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 38.7rem);
+    grid-gap: 2.4rem;
+
+    &-item {
+
+      &:nth-child(1) {
+        grid-row-start: span 2;
+        grid-column-start: span 2;
+      }
+
+      &:nth-child(2) {
+        grid-column-start: span 2;
+      }
+
+      &:nth-child(3) {
+        grid-column-start: span 2;
+      }
+
+      &:nth-child(4) {
+        grid-row-start: span 2;
+      }
+
+      &:nth-child(5) {
+        grid-row-start: span 2;
+        grid-column-start: span 2;
+      }
+
+      &:nth-child(8) {
+        grid-row-start: span 2;
+        grid-column-start: span 2;
+      }
+
+      &:nth-child(9) {
+        grid-row-start: span 2;
+        grid-column-start: span 2;
+      }
+    }
+
+    .image-info {
+      padding: 7.8rem 4.9rem;
+
+      .tag {
+        font-size: 2.4rem;
+      }
+    }
+  }
+}

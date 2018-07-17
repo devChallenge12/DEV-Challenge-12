@@ -1,0 +1,33 @@
+.main-footer {
+  .row {
+    padding: 5rem 0;
+    border-bottom: .6rem solid #14171d;
+  }
+
+  .logo-block {
+    margin-bottom: 1.6rem;
+    color: #262b40;
+    font-size: 26px;
+
+    .logo-text {
+      margin-left: 1rem;
+    }
+  }
+
+  .copyright {
+    color: $base-light-text;
+  }
+}
+
+@media (min-width: $large-screen) {
+  .main-footer {
+    .row {
+      padding: 10rem 0;
+      border-bottom: .9rem solid #14171d;
+    }
+
+    .logo-block {
+      margin-bottom: 4rem;
+    }
+  }
+}

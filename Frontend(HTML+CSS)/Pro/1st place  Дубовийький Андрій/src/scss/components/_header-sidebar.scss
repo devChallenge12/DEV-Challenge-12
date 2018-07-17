@@ -1,0 +1,156 @@
+.mobile__toggle {
+  display: none;
+}
+
+.header {
+  height: $header-desktop-height;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-wrap: wrap;
+  background: $color-white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 8;
+  padding: 10px 30px;
+  transform: translateY(-100%);
+  transition: all .2s;
+  .logo {
+    width: 250px;
+  }
+
+  &.active {
+    transform: translate(0);
+    box-shadow: 0px 4px 18px rgba(82, 95, 118, 0.12);
+  }
+
+  .header__filter {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-left: 30px;
+    flex: 1;
+    .content__filter {
+      margin-bottom: 0;
+    }
+
+    .action-btn.add {
+      margin-left: auto;
+    }
+  }
+}
+
+.sidebar {
+  background-color: $color-blue;
+  width: 280px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 30px;
+  .logo {
+    display: inline-block;
+    margin-bottom: 50px;
+  }
+
+  .copyright {
+    color: $color-white;
+    font-size: 12px;
+    line-height: 18px;
+    span {
+      font-size: 8px;
+      display: block;
+    }
+  }
+}
+
+.sidebar,
+.sidebar__content {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.sidebar__content {
+  flex: 1;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.main__menu {
+  flex: 1;
+  li {
+    &.title {
+      color: rgba($color-white, .4);
+      font-size: 10px;
+      line-height: 14px;
+      margin-top: 40px;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    &.exit {
+      margin-top: 50px;
+    }
+
+    a {
+      display: block;
+      color: $color-white;
+      font-size: 14px;
+      line-height: 40px;
+      padding-left: 40px;
+      position: relative;
+      &:hover,
+      &.active {
+        background-color: $color-blue-hover;
+      }
+
+      &.icon {
+        &:before {
+          content: '';
+          width: 24px;
+          height: 24px;
+          background: url('../img/sprite.png') no-repeat;
+          position: absolute;
+          left: 7px;
+          top: 10px;
+        }
+
+        &.icon_user:before {
+          background-position: 2px 0;
+        }
+
+        &.icon_bell:before {
+          background-position: -19px 0;
+        }
+
+        &.icon_sett:before {
+          background-position: -26px -26px;
+        }
+
+        &.icon_pen:before {
+          background-position: -62px 1px;
+        }
+
+        &.icon_page:before {
+          background-position: -39px 0;
+        }
+
+        &.icon_trash:before {
+          background-position: -49px -26px;
+        }
+
+        &.icon_exit:before {
+          background-position: 1px -26px;
+        }
+      }
+    }
+  }
+}

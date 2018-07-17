@@ -1,0 +1,73 @@
+$main-color: #11369E;
+$success-color: #189947;
+$warn-color: #DDA541;
+$danger-color: #BC3030;
+$border-color: #E6E9ED;
+$light-color: #F5F5F8;
+$lightest-color: #FFFFFF;
+$text-color: #1B1D1F;
+$gray-color: #525F76;
+$disabled-color: rgba(82, 95, 118, 0.4);
+$close-color: #282E3E;
+
+* {
+  box-sizing: border-box;
+}
+
+.main-holder {
+  display: flex;
+  min-height: 100vh;
+  align-items: stretch;
+}
+.sidebar {
+  min-width: 280px;
+}
+.left-sidebar {
+  padding: 30px 30px;
+  background: $main-color;
+  color: $lightest-color;
+  a {
+    color: $lightest-color;
+  }
+  .logo {
+    padding-bottom: 28px;
+  }
+}
+
+.btn {
+  display: inline-block;
+  background-color: $light-color;
+  display: flex;
+  align-items: center;
+  padding: 10px 27px 10px;
+  border-radius: 100px;
+  text-decoration: none;
+  color: $text-color;
+  white-space: nowrap;
+  text-align: center;
+  justify-content: center;
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: .9;
+  }
+  &__icon {
+    margin-right: 13px;
+  }
+}
+
+.btn--main {
+  background-color: $main-color;
+  color: $lightest-color;
+}
+.btn--invert {
+  background-color: transparent;
+  color: $gray-color;
+  border: 1px solid $border-color;
+  &:hover {
+    background-color: rgba($border-color, .2);
+  }
+}
+.btn--squard {
+  border-radius: 3px;
+}

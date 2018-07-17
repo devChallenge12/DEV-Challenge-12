@@ -1,0 +1,10 @@
+spring.couchbase:
+  bootstrap-hosts: localhost
+  bucket.name: test
+  bucket.password: couchbase
+
+spring:
+  rabbitmq:
+    host: localhost
+    username: user
+    password: pass

@@ -1,0 +1,83 @@
+@import '../utilities/variables';
+@import '../utilities/placeholder';
+
+// Container wrap
+.clearfix {
+  @extend %clearFix;
+}
+
+.container {
+  @extend %container;
+  
+  &-full {
+    @extend %container;
+  }
+  
+  @media (min-width: $small-screen) {
+    max-width: $small-container;
+  }
+  
+  @media (min-width: $medium-screen) {
+    max-width: $medium-container;
+  }
+  
+  @media (min-width: $large-screen) {
+    max-width: $large-container;
+  }
+  
+  @media (min-width: $xlarge-screen) {
+    max-width: $xlarge-container;
+  }
+
+  @media (min-width: $xxlarge-screen) {
+    max-width: $xxlarge-container;
+  }
+}
+
+.row {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: ($gutter-width / -2);
+  margin-left: ($gutter-width / -2);
+  
+  &-reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.col {
+  //display: flex;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  width: 100%; // hook for one column
+  padding-right: ($gutter-width / 2);
+  padding-left: ($gutter-width / 2);
+  
+  &-reverse {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: $small-screen-down) {
+  .container {
+    padding-right: ($gutter-width / 2.5);
+    padding-left: ($gutter-width / 2.5);
+    
+    &-full {
+      padding-right: ($gutter-width / 2.5);
+      padding-left: ($gutter-width / 2.5);
+    }
+  }
+  
+  .row {
+    margin-right: ($gutter-width / -2.5);
+    margin-left: ($gutter-width / -2.5);
+  }
+  
+  .col {
+    padding-right: ($gutter-width / 2.5);
+    padding-left: ($gutter-width / 2.5);
+  }
+}

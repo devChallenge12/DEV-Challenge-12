@@ -1,0 +1,44 @@
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.space {
+  flex: 1 1 auto;
+}
+
+.small-text {
+  font-size: 8pt;
+}
+
+.nobr {
+  white-space: nowrap;
+}
+
+.text-center {
+  text-align: center;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica', 'Verdana', sans-serif;
+  font-weight: 400;
+  font-display: optional;
+  color: #fff;
+}
+
+body {
+  background: url(/assets/deep-space.jpg) 0 0;
+}
+
+app-root {
+  width: 100%;
+  height: 100%;
+}

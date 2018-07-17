@@ -1,0 +1,185 @@
+.info-section {
+  .container {
+    max-width: 100%;
+  }
+
+  .info {
+    padding: 0 2rem;
+  }
+
+  .description {
+    margin-bottom: 3rem;
+  }
+
+  .image-block {
+    @extend %fitBackground;
+    position: relative;
+    height: 30rem;
+    margin: 3rem 0;
+
+    &-wrapper {
+      padding: 0;
+    }
+
+    &.creative {
+      background-image: url('../images/image-1.jpg');
+    }
+
+    &.video {
+      background-image: url('../images/image-2.jpg');
+
+      .heading {
+        right: 5%;
+      }
+
+      .cube-1 {
+        background: $base-color;
+      }
+
+      .cube-2 {
+        right: 4rem;
+        bottom: 4rem;
+        width: 2rem;
+        height: 2rem;
+        border: .1rem solid $white;
+        background: transparent;
+      }
+    }
+
+    .heading {
+      position: absolute;
+      display: flex;
+      right: 0;
+      bottom: 30%;
+      align-items: center;
+      color: $white;
+      font-size: 3rem;
+      transform: rotate(270deg);
+
+      img {
+        width: 7rem;
+      }
+
+      .play {
+        @extend %flexCenterChildren;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 3rem;
+        border-radius: 50%;
+        background: $white;
+        color: $base-text;
+        box-shadow: 0 0 34px 6px rgba(120, 149, 168, 0.25);
+        font-size: 1.6rem;
+        transform: rotate(-270deg);
+      }
+    }
+
+    .cube {
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      background: $white;
+
+      &-1 {
+        right: 0;
+        bottom: 0;
+      }
+
+      &-2 {
+        right: 3rem;
+        bottom: 3rem;
+      }
+    }
+  }
+
+  .about-me {
+    order: -1;
+  }
+}
+
+@media (min-width: $medium-screen) {
+  .info-section {
+
+    .image-block {
+
+      &.video {
+        .heading {
+          right: 23%;
+        }
+      }
+
+      .heading {
+        right: 40%;
+      }
+    }
+  }
+}
+
+@media (min-width: $large-screen) {
+  .info-section {
+
+    .image-block {
+      height: 65rem;
+      margin: 0;
+    }
+
+    .info {
+      padding: 0 8rem;
+    }
+
+    .about-me {
+      order: 1;
+    }
+  }
+}
+
+@media (min-width: $xxlarge-screen) {
+  .info-section {
+    .info {
+      padding: 0 15rem;
+    }
+
+    .image-block {
+
+      &.video {
+        .heading {
+          right: 14%;
+        }
+
+        .cube-2 {
+          right: 11.8rem;
+          bottom: 11.8rem;
+          width: 7rem;
+          height: 7rem;
+        }
+      }
+
+      .heading {
+        right: 5%;
+        bottom: 30%;
+        font-size: 8rem;
+
+        img {
+          width: 26rem;
+        }
+
+        .play {
+          width: 8rem;
+          height: 8rem;
+          margin-right: 11rem;
+          font-size: 3rem;
+        }
+      }
+
+      .cube {
+        width: 9.8rem;
+        height: 9.8rem;
+
+        &-2 {
+          right: 9.8rem;
+          bottom: 9.8rem;
+        }
+      }
+    }
+  }
+}

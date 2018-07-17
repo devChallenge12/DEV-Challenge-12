@@ -1,0 +1,3398 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for app\app.component.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">app/</a> app.component.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20.2% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>122/604</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.21% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>9/145</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">19.93% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>118/592</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1044
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+1099
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1108
+1109
+1110
+1111
+1112</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog,
+        MatDialogRef,
+        MatSnackBar,
+        MatButtonModule,
+        MatIcon } from '@angular/material';
+import { Subscription, Subject } from 'rxjs';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
+import 'jquery';
+import 'jquery-ui-dist/jquery-ui';
+import * as $ from 'jquery';
+&nbsp;
+@Component({
+  selector: 'app',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: [
+    './app.component.scss',
+    './../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css'
+  ],
+  templateUrl: 'app.component.html',
+  providers: []
+})
+export class AppComponent implements OnInit {
+  @ViewChild ('infoGraphicBlock') public infoGraphicBlock: any;
+  @ViewChild ('infoGraphicCanvas') public infoGraphicCanvas: any;
+  @ViewChild ('sidenav') public sidenav: any;
+  // for activities
+  @ViewChild ('activitySlide') public activitySlide: any;
+  @ViewChild ('activityStartTimeEl') public activityStartTimeEl: any;
+  @ViewChild ('activityEndTimeEl') public activityEndTimeEl: any;
+  @ViewChild ('activityColorEl') public activityColorEl: any;
+  @ViewChild ('activityTitleEl') public activityTitleEl: any;
+  // for commonPeriods
+  @ViewChild ('commonPeriodStartTimeEl') public commonPeriodStartTimeEl: any;
+  @ViewChild ('commonPeriodEndTimeEl') public commonPeriodEndTimeEl: any;
+  @ViewChild ('commonPeriodTitleEl') public commonPeriodTitleEl: any;
+  // for periods
+  @ViewChild ('periodSlide') public periodSlide: any;
+  @ViewChild ('periodStartTimeEl') public periodStartTimeEl: any;
+  @ViewChild ('periodEndTimeEl') public periodEndTimeEl: any;
+  @ViewChild ('periodTitleEl') public periodTitleEl: any;
+  // for signedPoints
+  @ViewChild ('signedPointSlide') public signedPointSlide: any;
+  @ViewChild ('signedPointTimeEl') public signedPointTimeEl: any;
+  @ViewChild ('signedPointTitleEl') public signedPointTitleEl: any;
+&nbsp;
+  public startPozX: number = 50;
+  public startHour: number = 5;
+  public scaleWidth: number;
+  public scaleHeight: number = 50;
+  public scaleMinHeight = this.scaleHeight - 15;
+  public simpleScaleTriggerWidth = 10; // without scale for 15 and 45 minutes
+  public scheduleSelected: string = 'schedule0';
+  // for activities
+  public activitySelected: string = 'activity0';
+  public activityTitleValue: string = '';
+  public activityStartTime: string = '';
+  public activityEndTime: string = '';
+  public activityColor: string = '';
+  public activityToHighlight: boolean = false;
+  public activities;
+  // for commonPeriods
+  public commonPeriodSelected: string = 'commonPeriod0';
+  public commonPeriodTitleValue: string = '';
+  public commonPeriodStartTime: string = '';
+  public commonPeriodEndTime: string = '';
+  public commonPeriods;
+  // for periods
+  public periodSelected: string = 'period0';
+  public periodTitleValue: string = '';
+  public periodStartTime: string = '';
+  public periodEndTime: string = '';
+  public periodBackground: boolean = false;
+  public periods;
+  // for signedPoints
+  public signedPointSelected: string = 'signedPoint0';
+  public signedPointTitleValue: string = '';
+  public signedPointTime: string = '';
+  public signedPointAlign: boolean = false;
+  public signedPoints;
+&nbsp;
+  public sidenavType: string = 'commonPeriods';
+&nbsp;
+  // початкові дані для побудови інфографіки
+  public infoGraphicData = {
+    commonPeriods: [
+      {title: 'Heavy traffic \n on the way to work', startTime: '7:30', endTime: '10:00'},
+      {title: 'SCRUM \n Stand-Up Meeting', startTime: '10:00', endTime: '10:30'},
+      {title: 'Heavy traffic \n on the way to home', startTime: '17:00', endTime: '19:30'}
+    ],
+    schedules: [
+      {title: 'Regular',
+      signedPoints: [
+        {time: '10:00', title: 'Work Starts', align: 'right'},
+        {time: '19:00', title: 'Work Ends', align: 'left'}
+      ],
+      periods: [
+        {title: 'Public \n Transport', startTime: '09:00', endTime: '10:00', background: 'false'},
+        {title: 'Activity at Work', startTime: '10:00', endTime: '19:00', background: 'true'},
+        {title: 'Public \n Transport', startTime: '19:00', endTime: '20:00', background: 'false'},
+        {title: 'Activity at Home', startTime: '20:00', endTime: '23:30', background: 'true'}
+      ],
+      activities: [
+        {title: 'Sleep 8:30', startTime: '23:30', endTime: '08:00',
+          color: '#0094f5', toHighlight: 'false'},
+        {title: 'Wake Up', startTime: '08:00', endTime: '08:00',
+          color: '#0094f5', toHighlight: 'false'},
+        {title: '', startTime: '08:00', endTime: '10:00',
+          color: '#fb4d8c', toHighlight: 'false'},
+        {title: 'Stand-Up 0:30', startTime: '10:00', endTime: '10:30',
+          color: '#fb4d8c', toHighlight: 'true'},
+        {title: 'Coffee 0:15', startTime: '10:30', endTime: '10:45',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Back to Flow 0:15', startTime: '10:45', endTime: '11:00',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Flow 1:00', startTime: '11:00', endTime: '12:00',
+          color: '#02cb03', toHighlight: 'true'},
+        {title: 'Lunch 0:45', startTime: '12:00', endTime: '12:45',
+          color: '#fb4d8c', toHighlight: 'true'},
+        {title: 'Back to Flow \n after Lunch 1:00', startTime: '12:45', endTime: '13:45',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Flow 2:15', startTime: '13:45', endTime: '16:00',
+          color: '#02cb03', toHighlight: 'true'},
+        {title: 'Meal 0:15', startTime: '16:00', endTime: '16:15',
+          color: '#fb4d8c', toHighlight: 'true'},
+        {title: 'Back to Flow 0:30', startTime: '16:15', endTime: '16:45',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Flow 2:15', startTime: '16:45', endTime: '19:00',
+          color: '#02cb03', toHighlight: 'true'},
+        {title: '', startTime: '19:00', endTime: '20:00',
+          color: '#fb4d8c', toHighlight: 'false'},
+        {title: 'Time with kid \n and family 2:30', startTime: '20:00', endTime: '22:30',
+          color: '#02cb03', toHighlight: 'true'},
+        {title: '', startTime: '22:30', endTime: '22:30',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Personal time \n before sleep 1:00', startTime: '22:30', endTime: '23:30',
+          color: '#fde82f', toHighlight: 'true'}
+      ]},
+      {title: 'Optimized',
+      signedPoints: [
+        {time: '07:15', title: 'Work Starts', align: 'right'},
+        {time: '16:15', title: 'Work Ends', align: 'left'}
+      ],
+      periods: [
+        {title: 'Car', startTime: '06:45', endTime: '07:15', background: 'false'},
+        {title: 'Activity at Work', startTime: '07:15', endTime: '16:15', background: 'true'},
+        {title: 'Car', startTime: '16:15', endTime: '17:00', background: 'false'},
+        {title: 'Activity at Home', startTime: '17:00', endTime: '22:30', background: 'true'},
+      ],
+      activities: [
+        {title: 'Sleep 7:30', startTime: '22:30', endTime: '06:00',
+          color: '#0094f5', toHighlight: 'false'},
+        {title: 'Wake Up', startTime: '06:00', endTime: '06:00',
+          color: '#0094f5', toHighlight: 'false'},
+        {title: '', startTime: '06:00', endTime: '07:15',
+          color: '#fb4d8c', toHighlight: 'false'},
+        {title: 'Coffee 0:15', startTime: '07:15', endTime: '07:30',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Most Productive \n Flow 2:30', startTime: '07:30', endTime: '10:00',
+          color: '#02cb03', toHighlight: 'true'},
+        {title: 'Stand-Up 0:30', startTime: '10:00', endTime: '10:30',
+          color: '#fb4d8c', toHighlight: 'true'},
+        {title: 'Back to Flow 0:15', startTime: '10:30', endTime: '10:45',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Flow 1:15', startTime: '10:45', endTime: '12:00',
+          color: '#02cb03', toHighlight: 'true'},
+        {title: 'Lunch 0:45', startTime: '12:00', endTime: '12:45',
+          color: '#fb4d8c', toHighlight: 'true'},
+        {title: 'Back to Flow \n after Lunch 1:00', startTime: '12:45', endTime: '13:45',
+          color: '#fde82f', toHighlight: 'true'},
+        {title: 'Flow 2:30', startTime: '13:45', endTime: '16:15',
+          color: '#02cb03', toHighlight: 'true'},
+        {title: '', startTime: '16:15', endTime: '17:00',
+          color: '#fb4d8c', toHighlight: 'false'},
+        {title: 'Time with kid \n &amp; family 5:30', startTime: '17:00', endTime: '22:30',
+          color: '#02cb03', toHighlight: 'true'}
+      ]}
+    ]
+  };
+&nbsp;
+  constructor() {
+    this.setNewData();
+  }
+&nbsp;
+  public setNewData(<span class="missing-if-branch" title="else path not taken" >E</span>newFileFlag: boolean = false) {
+    let scheduleIndex = parseInt(this.scheduleSelected.substring(8), 10);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (newFileFlag) {
+<span class="cstat-no" title="statement not covered" >      this.commonPeriods = this.infoGraphicData['commonPeriods'];</span>
+<span class="cstat-no" title="statement not covered" >      this.activitySelected = 'activity-1';</span>
+<span class="cstat-no" title="statement not covered" >      this.periodSelected = 'period-1';</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointSelected = 'signedPoint-1';</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodSelected = 'commonPeriod-1';</span>
+&nbsp;
+    } else {
+&nbsp;
+      // for activities
+      this.activities = this.infoGraphicData['schedules'][scheduleIndex]['activities'];
+      let activityIndex = parseInt(this.activitySelected.substring(8), 10);
+      this.activityTitleValue = this.activities[activityIndex]['title'];
+      this.activityStartTime = this.activities[activityIndex]['startTime'];
+      this.activityEndTime = this.activities[activityIndex]['endTime'];
+      this.activityColor = this.activities[activityIndex]['color'];
+      this.activityToHighlight = (this.activities[activityIndex]['toHighlight'] === 'true');
+&nbsp;
+      // for periods
+      this.periods = this.infoGraphicData['schedules'][scheduleIndex]['periods'];
+      let periodIndex = parseInt(this.periodSelected.substring(6), 10);
+      this.periodTitleValue = this.periods[periodIndex]['title'];
+      this.periodStartTime = this.periods[activityIndex]['startTime'];
+      this.periodEndTime = this.periods[activityIndex]['endTime'];
+      this.periodBackground = (this.periods[periodIndex]['background'] === 'true');
+&nbsp;
+      // for signedPoints
+      this.signedPoints = this.infoGraphicData['schedules'][scheduleIndex]['signedPoints'];
+      let signedPointIndex = parseInt(this.signedPointSelected.substring(11), 10);
+      this.signedPointTitleValue = this.signedPoints[signedPointIndex]['title'];
+      this.signedPointTime = this.signedPoints[activityIndex]['time'];
+      this.signedPointAlign = (this.signedPoints[signedPointIndex]['align'] === 'left');
+&nbsp;
+      // for commonPeriods
+      this.commonPeriods = this.infoGraphicData['commonPeriods'];
+      let commonPeriodIndex = parseInt(this.commonPeriodSelected.substring(12), 10);
+      this.commonPeriodTitleValue = this.commonPeriods[commonPeriodIndex]['title'];
+      this.commonPeriodStartTime = this.commonPeriods[commonPeriodIndex]['startTime'];
+      this.commonPeriodEndTime = this.commonPeriods[commonPeriodIndex]['endTime'];
+    }
+  }
+&nbsp;
+  //  функція побудови частини інфографіки - Спільних періодів для двох днів
+  public buildCommonPeriods(el: HTMLCanvasElement, startPozX: number, areaWidth: number,
+                            startPozY: number, areaHeight: number,
+                            title: string, <span class="cstat-no" title="statement not covered" >step: number = 0<span class="fstat-no" title="function not covered" >)</span> {</span>
+    let infoGraphicCtx = <span class="cstat-no" title="statement not covered" >el.getContext('2d');</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function createPinstripeCanvas() {</span>
+&nbsp;
+      const patternCanvas = <span class="cstat-no" title="statement not covered" >document.createElement('canvas');</span>
+      const pctx = <span class="cstat-no" title="statement not covered" >patternCanvas.getContext('2d');</span>
+      const canvasSideLength = <span class="cstat-no" title="statement not covered" >6 + step;</span>
+      const divisions = <span class="cstat-no" title="statement not covered" >4;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      patternCanvas.width = canvasSideLength;</span>
+<span class="cstat-no" title="statement not covered" >      patternCanvas.height = canvasSideLength;</span>
+<span class="cstat-no" title="statement not covered" >      pctx.fillStyle = '#f0ebeb';</span>
+&nbsp;
+      // Top line
+<span class="cstat-no" title="statement not covered" >      pctx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >      pctx.moveTo(0, canvasSideLength * (1 / divisions));</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength * (1 / divisions), 0);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(0, 0);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(0, canvasSideLength * (1 / divisions));</span>
+<span class="cstat-no" title="statement not covered" >      pctx.fill();</span>
+&nbsp;
+      // Middle line
+<span class="cstat-no" title="statement not covered" >      pctx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >      pctx.moveTo(canvasSideLength, canvasSideLength * (1 / divisions));</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength * (1 / divisions), canvasSideLength);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(0, canvasSideLength);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(0, canvasSideLength * ((divisions - 1) / divisions));</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength * ((divisions - 1) / divisions), 0);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength, 0);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength, canvasSideLength * (1 / divisions));</span>
+<span class="cstat-no" title="statement not covered" >      pctx.fill();</span>
+&nbsp;
+      // Bottom line
+<span class="cstat-no" title="statement not covered" >      pctx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >      pctx.moveTo(canvasSideLength, canvasSideLength * ((divisions - 1) / divisions));</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength * ((divisions - 1) / divisions), canvasSideLength);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength, canvasSideLength);</span>
+<span class="cstat-no" title="statement not covered" >      pctx.lineTo(canvasSideLength, canvasSideLength * ((divisions - 1) / divisions));</span>
+<span class="cstat-no" title="statement not covered" >      pctx.fill();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return patternCanvas;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillStyle = infoGraphicCtx.createPattern(createPinstripeCanvas(), 'repeat');</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillRect(startPozX, startPozY, areaWidth, areaHeight);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.save();</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.rotate(-Math.PI / 2);</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.font = '10px Arial';</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillStyle = 'gray';</span>
+    let titleArray = <span class="cstat-no" title="statement not covered" >title.split('\n');</span>
+    let maxTextIndex = <span class="cstat-no" title="statement not covered" >0;</span>
+    let maxTextSize = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >    for (let k = 0; k &lt; titleArray.length; k++) {</span>
+<span class="cstat-no" title="statement not covered" >      if (titleArray[k].length &gt;= maxTextSize) {</span>
+<span class="cstat-no" title="statement not covered" >        maxTextIndex = k;</span>
+<span class="cstat-no" title="statement not covered" >        maxTextSize = titleArray[k].length;</span>
+      }
+    }
+&nbsp;
+    let textAfterTitle = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(titleArray[maxTextIndex].toUpperCase()).width;</span>
+<span class="cstat-no" title="statement not covered" >    for (let k = 0; k &lt; titleArray.length; k++) {</span>
+      let currentTextWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(titleArray[k].toUpperCase()).width;</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillText(titleArray[k].toUpperCase(),</span>
+                              startPozY - (Math.round(currentTextWidth / 2)) - 100,
+                              startPozX + Math.round(areaWidth / 2) + 5
+                              - (titleArray.length - 1) * 10 + k * 10);
+    }
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.restore();</span>
+&nbsp;
+  }
+&nbsp;
+  //  функція побудови частини інфографіки - шкали та відображенням на ній годин
+  //  при зменшенні шкали зникаються шкали для 15 та 45 хвилин
+  public buildScale(el: HTMLCanvasElement, startPozY: number,
+                    infoGraphicTitle: string, signedPoints: object[]<span class="fstat-no" title="function not covered" >) {</span>
+&nbsp;
+    let infoGraphicCtx = <span class="cstat-no" title="statement not covered" >el.getContext('2d');</span>
+    let hourTitleFontSize = <span class="cstat-no" title="statement not covered" >Math.round(this.scaleWidth / 5);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillStyle = 'black';</span>
+&nbsp;
+    // title text
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.font = 'bold 22px Arial';</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillText(infoGraphicTitle, this.startPozX, startPozY - 60);</span>
+    let textAfterTitle = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(infoGraphicTitle).width;</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.font = '22px Arial';</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillText('Schedule', this.startPozX + textAfterTitle + 16, startPozY - 60);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let signedPoint<span class="cstat-no" title="statement not covered" ></span> of signedPoints) {</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.strokeStyle = 'lightgray';</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillStyle = '#bc304d';</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.lineWidth = 1;</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.font = 'bold ' + (hourTitleFontSize + 3) + 'px Arial';</span>
+      let textWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(signedPoint['time']).width;</span> // center align title
+      let timeValue = <span class="cstat-no" title="statement not covered" >this.timeToNumber(signedPoint['time']);</span>
+      let leftPoz: number = <span class="cstat-no" title="statement not covered" >0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (timeValue === this.startHour) {</span>
+<span class="cstat-no" title="statement not covered" >        leftPoz = this.startPozX + (timeValue - this.startHour) * this.scaleWidth;</span>
+        let leftPoz2 = <span class="cstat-no" title="statement not covered" >this.startPozX + (timeValue + 24 - this.startHour) * this.scaleWidth;</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.fillText(signedPoint['time'],</span>
+                                leftPoz - Math.round(textWidth / 2),
+                                startPozY - 30);
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.fillText(signedPoint['time'],</span>
+                                leftPoz2 - Math.round(textWidth / 2),
+                                startPozY - 30);
+&nbsp;
+        // sign title
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.font = 'bold ' + hourTitleFontSize + 'px Arial';</span>
+        let textTitleWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(signedPoint['title']).width;</span>
+<span class="cstat-no" title="statement not covered" >        if (signedPoint['align'] === 'left') {</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.fillText(signedPoint['title'], leftPoz</span>
+                                  - Math.round(textWidth / 2) - textTitleWidth
+                                  - Math.round(hourTitleFontSize / 2), startPozY - 30);
+        } else {
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.fillText(signedPoint['title'], leftPoz</span>
+                                  + Math.round(textWidth / 2) + Math.round(hourTitleFontSize / 2),
+                                  startPozY - 30);
+        }
+&nbsp;
+        // sign title 2
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (signedPoint['align'] === 'left') {</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.fillText(signedPoint['title'], leftPoz2</span>
+                                  - Math.round(textWidth / 2) - textTitleWidth
+                                  - Math.round(hourTitleFontSize / 2), startPozY - 30);
+        } else {
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.fillText(signedPoint['title'], leftPoz2</span>
+                                  + Math.round(textWidth / 2) + Math.round(hourTitleFontSize / 2),
+                                  startPozY - 30);
+        }
+&nbsp;
+        // line to scale
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.moveTo(leftPoz, startPozY - 25);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.lineTo(leftPoz, startPozY + this.scaleHeight / 2);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.stroke();</span>
+&nbsp;
+        // line2 to scale
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.moveTo(leftPoz2, startPozY - 25);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.lineTo(leftPoz2, startPozY + this.scaleHeight / 2);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.stroke();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        if ((timeValue &gt;= this.startHour) &amp;&amp; (timeValue &lt;= 24)) {</span>
+<span class="cstat-no" title="statement not covered" >          leftPoz = this.startPozX + (timeValue - this.startHour) * this.scaleWidth;</span>
+        } else <span class="cstat-no" title="statement not covered" >if ((timeValue &lt;= this.startHour) &amp;&amp; (timeValue &gt;= 0)) {</span>
+<span class="cstat-no" title="statement not covered" >          leftPoz = this.startPozX + (timeValue + 24 - this.startHour) * this.scaleWidth;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.fillText(signedPoint['time'], leftPoz</span>
+                                - Math.round(textWidth / 2), startPozY - 30);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.font = 'bold ' + hourTitleFontSize + 'px Arial';</span>
+        let textTitleWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(signedPoint['title']).width;</span>
+<span class="cstat-no" title="statement not covered" >        if (signedPoint['align'] === 'left') {</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.fillText(signedPoint['title'],</span>
+                                  leftPoz - Math.round(textWidth / 2) - textTitleWidth
+                                  - Math.round(hourTitleFontSize / 2), startPozY - 30);
+        } else {
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.fillText(signedPoint['title'],</span>
+                                  leftPoz + Math.round(textWidth / 2)
+                                  + Math.round(hourTitleFontSize / 2), startPozY - 30);
+        }
+&nbsp;
+        // line to scale
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.moveTo(leftPoz, startPozY - 25);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.lineTo(leftPoz, startPozY + this.scaleHeight / 2);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.stroke();</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let i = 0; i &lt;= 24; i++) {</span>
+      // drawing hours
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.lineWidth = 2;</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.moveTo(this.startPozX + i * this.scaleWidth, startPozY);</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.lineTo(this.startPozX + i * this.scaleWidth, startPozY + this.scaleHeight);</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.strokeStyle = 'black';</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillStyle = 'black';</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.stroke();</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.font = hourTitleFontSize + 'px Arial';</span>
+&nbsp;
+      let signedPointFlag: boolean = <span class="cstat-no" title="statement not covered" >false;</span>
+<span class="cstat-no" title="statement not covered" >      for (let signedPoint<span class="cstat-no" title="statement not covered" ></span> of signedPoints) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.startHour + i === this.timeToNumber(signedPoint['time'])) {</span>
+<span class="cstat-no" title="statement not covered" >          signedPointFlag = true;</span>
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      if (!signedPointFlag) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.startHour + i &lt;= 24) {</span>
+<span class="cstat-no" title="statement not covered" >          if (this.startHour + i &lt; 10) {</span>
+            let textHour = <span class="cstat-no" title="statement not covered" >'0' + (this.startHour + i) + ':00';</span>
+            let textWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(textHour).width;</span> // center align hour title
+<span class="cstat-no" title="statement not covered" >            infoGraphicCtx.fillText(textHour, this.startPozX</span>
+                                    - Math.round(textWidth / 2)
+                                    + i * this.scaleWidth, startPozY - 10);
+          } else {
+<span class="cstat-no" title="statement not covered" >            if (this.startHour + i === 12) {</span>
+<span class="cstat-no" title="statement not covered" >              infoGraphicCtx.font = 'bold ' + (hourTitleFontSize + 2) + 'px Arial';</span>
+            }
+            let textHour = <span class="cstat-no" title="statement not covered" >(this.startHour + i) + ':00';</span>
+            let textWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(textHour).width;</span> // center align hour title
+<span class="cstat-no" title="statement not covered" >            infoGraphicCtx.fillText(textHour, this.startPozX</span>
+                                    - Math.round(textWidth / 2)
+                                    + i * this.scaleWidth, startPozY - 10);
+          }
+        } else {
+<span class="cstat-no" title="statement not covered" >          if (this.startHour + i - 24 &lt; 10) {</span>
+            let textHour = <span class="cstat-no" title="statement not covered" >'0' + (this.startHour + i - 24) + ':00';</span>
+            let textWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(textHour).width;</span> // center align hour title
+<span class="cstat-no" title="statement not covered" >            infoGraphicCtx.fillText(textHour, this.startPozX</span>
+                                    - Math.round(textWidth / 2)
+                                    + i * this.scaleWidth, startPozY - 10);
+          } else {
+            let textHour = <span class="cstat-no" title="statement not covered" >(this.startHour + i - 24) + ':00';</span>
+            let textWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(textHour).width;</span> // center align hour title
+<span class="cstat-no" title="statement not covered" >            infoGraphicCtx.fillText(textHour, this.startPozX</span>
+                                    - Math.round(textWidth / 2)
+                                    + i * this.scaleWidth, startPozY - 10);
+          }
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (i &lt; 24) {</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.strokeStyle = 'gray';</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.lineWidth = 1;</span>
+&nbsp;
+        // drawing half hour
+<span class="cstat-no" title="statement not covered" >        if (Math.round(this.scaleWidth / 4) &gt; this.simpleScaleTriggerWidth) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.moveTo(this.startPozX + Math.round(this.scaleWidth / 2)</span>
+                                + i * this.scaleWidth, startPozY);
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.lineTo(this.startPozX + Math.round(this.scaleWidth / 2)</span>
+                                + i * this.scaleWidth, startPozY + this.scaleHeight);
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.stroke();</span>
+        } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.moveTo(this.startPozX + Math.round(this.scaleWidth / 2)</span>
+                                + i * this.scaleWidth, startPozY
+                                + (this.scaleHeight - this.scaleMinHeight));
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.lineTo(this.startPozX + Math.round(this.scaleWidth / 2)</span>
+                                + i * this.scaleWidth, startPozY + this.scaleHeight);
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.stroke();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (Math.round(this.scaleWidth / 4) &gt; this.simpleScaleTriggerWidth) {</span>
+          // drawing 15 minutes
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.moveTo(this.startPozX + Math.round(this.scaleWidth / 4)</span>
+                                + i * this.scaleWidth, startPozY
+                                + (this.scaleHeight - this.scaleMinHeight));
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.lineTo(this.startPozX + Math.round(this.scaleWidth / 4)</span>
+                                + i * this.scaleWidth, startPozY + this.scaleHeight);
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.stroke();</span>
+&nbsp;
+          // drawing 45 minutes
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.moveTo(this.startPozX + Math.round(3 * this.scaleWidth / 4)</span>
+                                + i * this.scaleWidth, startPozY
+                                + (this.scaleHeight - this.scaleMinHeight));
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.lineTo(this.startPozX + Math.round(3 * this.scaleWidth / 4)</span>
+                                + i * this.scaleWidth, startPozY + this.scaleHeight);
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >          infoGraphicCtx.stroke();</span>
+        }
+      }
+    }
+  }
+&nbsp;
+  // допоміжна функція для визначення розташування та
+  // ширина конкретного відрізку інфографіки за данними часу
+  public calculateTimePoz(timeStart: string, timeEnd: string) {
+    let resultTimeStart: number = -1;
+    let timePointsArray = [timeStart, timeEnd];
+    let distanceArray = [];
+&nbsp;
+    for (let timePoint of timePointsArray) {
+&nbsp;
+      let timeArray = timePoint.split(':');
+      let hour = parseInt(timeArray[0], 10);
+      let minutes = 0;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (timeArray.length &gt; 1) {
+        minutes = Math.round(parseInt(timeArray[1], 10) * 100 / 60) / 100;
+      }
+      let resultTime = hour + minutes;
+      if (resultTimeStart &lt; 0) {
+        resultTimeStart = resultTime;
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if ((resultTime &lt; resultTimeStart)
+                || ((resultTimeStart &lt; 5) &amp;&amp; (<span class="branch-2 cbranch-no" title="branch not covered" >resultTime &gt; 5)</span>)) {
+<span class="cstat-no" title="statement not covered" >        resultTime += 24;</span>
+      }
+      let distanceHour = 0;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (resultTime &gt;= this.startHour) {
+        distanceHour = resultTime - this.startHour;
+      } else {
+<span class="cstat-no" title="statement not covered" >        distanceHour = resultTime + 24 - this.startHour;</span>
+      }
+      distanceArray.push(Math.round(this.startPozX + (this.scaleWidth) * distanceHour));
+    }
+    return [distanceArray[0], distanceArray[1] - distanceArray[0]];
+&nbsp;
+  }
+&nbsp;
+  // public calculateTimePozFake(timeStart: string, timeEnd: string) {
+  //   let resultTimeStart: number = -1;
+  //   let timePointsArray = [timeStart, timeEnd];
+  //   let distanceArray = [];
+  //   for (let timePoint of timePointsArray) {
+  //     let timeArray = timePoint.split(':');
+  //     let hour = parseInt(timeArray[0], 10);
+  //     let minutes = 0;
+  //     if (timeArray.length &gt; 1) {
+  //       minutes = Math.round(parseInt(timeArray[1], 10) * 100 / 60) / 100;
+  //     }
+  //     let resultTime = hour + minutes;
+  //     if (resultTimeStart &lt; 0) {
+  //       resultTimeStart = resultTime;
+  //     } else if ((resultTime &lt; resultTimeStart)
+  //               || ((resultTimeStart &lt; 5) &amp;&amp; (resultTime &gt; 5))) {
+  //       resultTime += 24;
+  //     }
+  //     let distanceHour = 0;
+  //     if (resultTime &gt;= this.startHour) {
+  //       distanceHour = resultTime - this.startHour;
+  //     } else {
+  //       distanceHour = resultTime + 24 - this.startHour;
+  //     }
+  //     // distanceArray.push(Math.round(this.startPozX + (this.scaleWidth) * distanceHour));
+  //     // distanceArray.push(resultTime);
+  //     distanceArray.push(this.scaleWidth);
+  //   }
+  //   // return [parseInt(timeStart.split(':')[0], 10), parseInt(timeEnd.split(':')[0], 10)];
+  //   // return [distanceArray[0], distanceArray[1] - distanceArray[0]];
+  //   return [distanceArray[0], distanceArray[1]];
+    
+  // }
+&nbsp;
+  public checkTimeValue(timeValue: string<span class="fstat-no" title="function not covered" >) {</span>
+    let timeArray = <span class="cstat-no" title="statement not covered" >timeValue.split(':');</span>
+    let timeSumm: number;
+<span class="cstat-no" title="statement not covered" >    if (timeArray.length &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >      timeSumm = parseInt(timeArray[0], 10)</span>
+                          + (Math.round(parseInt(timeArray[1], 10) * 100 / 60) / 100);
+    } else {
+<span class="cstat-no" title="statement not covered" >      timeSumm = parseInt(timeArray[0], 10);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (timeSumm &gt; 24) {</span>
+      let normalTime = <span class="cstat-no" title="statement not covered" >parseInt(timeArray[0], 10) - 24;</span>
+      let normalTimeText: string = <span class="cstat-no" title="statement not covered" >normalTime.toString();</span>
+<span class="cstat-no" title="statement not covered" >      if (normalTime &lt; 10) {</span>
+<span class="cstat-no" title="statement not covered" >        normalTimeText = '0' + normalTime;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return normalTimeText + ':' + timeArray[1];</span>
+    } else <span class="cstat-no" title="statement not covered" >if (timeSumm &lt; 0) {</span>
+      let normalTime = <span class="cstat-no" title="statement not covered" >-1 * parseInt(timeArray[0], 10);</span>
+      let normalTimeText: string = <span class="cstat-no" title="statement not covered" >normalTime.toString();</span>
+<span class="cstat-no" title="statement not covered" >      if (normalTime &lt; 10) {</span>
+<span class="cstat-no" title="statement not covered" >        normalTimeText = '0' + normalTime;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return normalTimeText + ':' + timeArray[1];</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return timeValue;</span>
+    }
+  }
+&nbsp;
+  // функція переводу годин до числового значення в дисятичній системі
+  public timeToNumber(timeValue: string<span class="fstat-no" title="function not covered" >) {</span>
+    let timeValueArray = <span class="cstat-no" title="statement not covered" >timeValue.split(':');</span>
+    let hours = <span class="cstat-no" title="statement not covered" >parseInt(timeValueArray[0], 10);</span>
+    let minutes = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >    if (timeValueArray.length &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >      minutes += Math.round(parseInt(timeValueArray[1], 10) * 100 / 60) / 100;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return hours + minutes;</span>
+  }
+&nbsp;
+  //  функція побудови частини інфографіки - Періоду
+  public buildPeriod(el: HTMLCanvasElement, pozX: number, periodWidth: number,
+                     pozY: number, period: object<span class="fstat-no" title="function not covered" >) {</span>
+    let infoGraphicCtx = <span class="cstat-no" title="statement not covered" >el.getContext('2d');</span>
+    let hourTitleFontSize = <span class="cstat-no" title="statement not covered" >Math.round(this.scaleWidth / 5);</span>
+    let startPozY = <span class="cstat-no" title="statement not covered" >pozY + this.scaleHeight;</span>
+    let startTimeValue = <span class="cstat-no" title="statement not covered" >this.timeToNumber(period['startTime']);</span>
+    let endTimeValue = <span class="cstat-no" title="statement not covered" >this.timeToNumber(period['endTime']);</span>
+    let timePeriodArray = <span class="cstat-no" title="statement not covered" >[period['startTime'], period['endTime']];</span>
+&nbsp;
+    // drawing background if exist
+<span class="cstat-no" title="statement not covered" >    if (period['background'] === 'true') {</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillStyle = '#eeeeee';</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillRect(pozX, startPozY, periodWidth, Math.round(this.scaleHeight * 3 / 4));</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let timePoint<span class="cstat-no" title="statement not covered" ></span> of timePeriodArray) {</span>
+      // drawing points of period
+      let timePointValue = <span class="cstat-no" title="statement not covered" >this.timeToNumber(timePoint);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if ((timePointValue &gt; 0) &amp;&amp; (timePointValue &lt; this.startHour)) {</span>
+<span class="cstat-no" title="statement not covered" >        timePointValue += 24;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.lineWidth = 2;</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.moveTo(this.startPozX + (timePointValue - this.startHour)</span>
+                            * this.scaleWidth, startPozY);
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.lineTo(this.startPozX + (timePointValue - this.startHour)</span>
+                            * this.scaleWidth, startPozY + this.scaleHeight);
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.strokeStyle = 'black';</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillStyle = 'black';</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.stroke();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if ((timePointValue === this.startHour)</span>
+          || (pozX + periodWidth - 50 === 24 * this.scaleWidth)) {
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.moveTo(this.startPozX + 24 * this.scaleWidth, startPozY);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.lineTo(this.startPozX + 24 * this.scaleWidth, startPozY + this.scaleHeight);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.stroke();</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if ((pozX === this.startPozX) &amp;&amp; (startTimeValue !== this.startHour)) {</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.moveTo(this.startPozX, startPozY);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.lineTo(this.startPozX, startPozY + this.scaleHeight);</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.closePath();</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicCtx.stroke();</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.font = '7px Arial';</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillStyle = 'black';</span>
+    let titleArray = <span class="cstat-no" title="statement not covered" >period['title'].split('\n');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let k = 0; k &lt; titleArray.length; k++) {</span>
+      let currentTextWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(titleArray[k].toUpperCase()).width;</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillText(titleArray[k].toUpperCase(), pozX + Math.round(periodWidth / 2)</span>
+                              - Math.round(currentTextWidth / 2), startPozY
+                              + Math.round(this.scaleHeight * 3 / 8) + 3
+                              - (titleArray.length - 1) * 4 + k * 10);
+    }
+&nbsp;
+  }
+&nbsp;
+  //  функція побудови частини інфографіки - Події
+  public buildActivity(el: HTMLCanvasElement, pozX: number, activityWidth: number,
+                       pozY: number, activity: object<span class="fstat-no" title="function not covered" >) {</span>
+    let infoGraphicCtx = <span class="cstat-no" title="statement not covered" >el.getContext('2d');</span>
+    let hourTitleFontSize = <span class="cstat-no" title="statement not covered" >Math.round(this.scaleWidth / 5);</span>
+    let startPozY = <span class="cstat-no" title="statement not covered" >pozY + Math.round(this.scaleHeight * 3 / 5);</span>
+    let startTimeValue = <span class="cstat-no" title="statement not covered" >this.timeToNumber(activity['startTime']);</span>
+    let endTimeValue = <span class="cstat-no" title="statement not covered" >this.timeToNumber(activity['endTime']);</span>
+    let timePeriodArray = <span class="cstat-no" title="statement not covered" >[activity['startTime'], activity['endTime']];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillStyle = activity['color'];</span>
+<span class="cstat-no" title="statement not covered" >    if (activity['toHighlight'] === 'true') {</span>
+<span class="cstat-no" title="statement not covered" >      startPozY = pozY + Math.round(this.scaleHeight * 2 / 5);</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillRect(pozX, startPozY, activityWidth, Math.round(this.scaleHeight * 3 / 5));</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillRect(pozX, startPozY, activityWidth, Math.round(this.scaleHeight * 2 / 5));</span>
+    }
+&nbsp;
+    // title for activity
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.save();</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.rotate(-Math.PI / 2);</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.font = '8px Arial';</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillStyle = activity['color'];</span>
+    let titleArray = <span class="cstat-no" title="statement not covered" >activity['title'].split('\n');</span>
+    let maxTextIndex = <span class="cstat-no" title="statement not covered" >0;</span>
+    let maxTextSize = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >    for (let k = 0; k &lt; titleArray.length; k++) {</span>
+<span class="cstat-no" title="statement not covered" >      if (titleArray[k].length &gt;= maxTextSize) {</span>
+<span class="cstat-no" title="statement not covered" >        maxTextIndex = k;</span>
+<span class="cstat-no" title="statement not covered" >        maxTextSize = titleArray[k].length;</span>
+      }
+    }
+&nbsp;
+    let textAfterTitle = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(titleArray[maxTextIndex].toUpperCase()).width;</span>
+<span class="cstat-no" title="statement not covered" >    for (let k = 0; k &lt; titleArray.length; k++) {</span>
+      let currentTextWidth = <span class="cstat-no" title="statement not covered" >infoGraphicCtx.measureText(titleArray[k].toUpperCase()).width;</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicCtx.fillText(titleArray[k].toUpperCase(),</span>
+                              - startPozY - (Math.round(currentTextWidth))
+                              - this.scaleHeight * 1.5,
+                              pozX + Math.round(activityWidth / 2) + 5
+                              - (titleArray.length - 1) * 10 + k * 10);
+    }
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.restore();</span>
+  }
+&nbsp;
+  // Основна функція, яка будує всю інфографіку
+<span class="fstat-no" title="function not covered" >  public infoGraphicDesigner() {</span>
+    let infoGraphicEl = <span class="cstat-no" title="statement not covered" >this.infoGraphicCanvas.nativeElement;</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicEl.height = 200 + 250 * this.infoGraphicData.schedules.length;</span>
+<span class="cstat-no" title="statement not covered" >    this.scaleWidth = Math.round((infoGraphicEl.width - this.startPozX * 2) / 24); </span>// for 1 hour
+&nbsp;
+    let infoGraphicCtx = <span class="cstat-no" title="statement not covered" >infoGraphicEl.getContext('2d');</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillStyle = 'white';</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicCtx.fillRect(0, 0, infoGraphicEl.width, infoGraphicEl.height);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let j = 0; j &lt; this.infoGraphicData.commonPeriods.length; j++) {</span>
+      let item = <span class="cstat-no" title="statement not covered" >this.infoGraphicData.commonPeriods[j];</span>
+<span class="cstat-no" title="statement not covered" >      item.startTime = this.checkTimeValue(item.startTime);</span>
+<span class="cstat-no" title="statement not covered" >      item.endTime = this.checkTimeValue(item.endTime);</span>
+&nbsp;
+      let calculateTimePozArray = <span class="cstat-no" title="statement not covered" >this.calculateTimePoz(item.startTime, item.endTime);</span>
+      let fullCommonPeriodWidth = <span class="cstat-no" title="statement not covered" >calculateTimePozArray[0] + calculateTimePozArray[1];</span>
+<span class="cstat-no" title="statement not covered" >      if (fullCommonPeriodWidth &lt;= Math.round(this.scaleWidth * 24)) {</span>
+<span class="cstat-no" title="statement not covered" >        this.buildCommonPeriods(infoGraphicEl, calculateTimePozArray[0], calculateTimePozArray[1],</span>
+                              10, infoGraphicEl.height - 20, item.title, j);
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.buildCommonPeriods(infoGraphicEl, calculateTimePozArray[0],</span>
+                                this.startPozX + Math.round(this.scaleWidth * 24)
+                                - calculateTimePozArray[0],
+                              10, infoGraphicEl.height - 20, item.title, j);
+<span class="cstat-no" title="statement not covered" >        this.buildCommonPeriods(infoGraphicEl, this.startPozX, calculateTimePozArray[0]</span>
+                                + calculateTimePozArray[1]
+                                - Math.round(this.scaleWidth * 24) - this.startPozX,
+                              10, infoGraphicEl.height - 20, item.title, j);
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (let j = 0; j &lt; this.infoGraphicData.schedules.length; j++) {</span>
+      let pozY = <span class="cstat-no" title="statement not covered" >250 + 250 * j;</span>
+&nbsp;
+      // build activities
+<span class="cstat-no" title="statement not covered" >      for (let activityItem<span class="cstat-no" title="statement not covered" ></span> of this.infoGraphicData.schedules[j].activities) {</span>
+&nbsp;
+        let calculateTimePozArray = <span class="cstat-no" title="statement not covered" >this.calculateTimePoz(activityItem.startTime,</span>
+                                                          activityItem.endTime);
+        let fullActivityWidth = <span class="cstat-no" title="statement not covered" >calculateTimePozArray[0] + calculateTimePozArray[1];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (fullActivityWidth &lt;= Math.round(this.scaleWidth * 24)) {</span>
+<span class="cstat-no" title="statement not covered" >          this.buildActivity(infoGraphicEl, calculateTimePozArray[0],</span>
+                              calculateTimePozArray[1], pozY, activityItem);
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.buildActivity(infoGraphicEl, calculateTimePozArray[0],</span>
+                              this.startPozX + Math.round(this.scaleWidth * 24)
+                              - calculateTimePozArray[0], pozY, activityItem);
+<span class="cstat-no" title="statement not covered" >          this.buildActivity(infoGraphicEl, this.startPozX, calculateTimePozArray[0]</span>
+                              + calculateTimePozArray[1] - Math.round(this.scaleWidth * 24)
+                              - this.startPozX, pozY, activityItem);
+          }
+      }
+      //
+&nbsp;
+      // build scale
+<span class="cstat-no" title="statement not covered" >      this.buildScale(infoGraphicEl, pozY, this.infoGraphicData.schedules[j].title,</span>
+                      this.infoGraphicData.schedules[j].signedPoints);
+&nbsp;
+      // build periods
+<span class="cstat-no" title="statement not covered" >      for (let periodItem<span class="cstat-no" title="statement not covered" ></span> of this.infoGraphicData.schedules[j].periods) {</span>
+&nbsp;
+        let calculateTimePozArray = <span class="cstat-no" title="statement not covered" >this.calculateTimePoz(periodItem.startTime,</span>
+                                                          periodItem.endTime);
+        let fullPeriodWidth = <span class="cstat-no" title="statement not covered" >calculateTimePozArray[0] + calculateTimePozArray[1];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (fullPeriodWidth &lt;= Math.round(this.scaleWidth * 24)) {</span>
+<span class="cstat-no" title="statement not covered" >          this.buildPeriod(infoGraphicEl, calculateTimePozArray[0],</span>
+                            calculateTimePozArray[1], pozY, periodItem);
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.buildPeriod(infoGraphicEl, calculateTimePozArray[0], this.startPozX</span>
+                            + Math.round(this.scaleWidth * 24)
+                            - calculateTimePozArray[0], pozY, periodItem);
+<span class="cstat-no" title="statement not covered" >          this.buildPeriod(infoGraphicEl, this.startPozX, calculateTimePozArray[0]</span>
+                            + calculateTimePozArray[1] - Math.round(this.scaleWidth * 24)
+                            - this.startPozX, pozY, periodItem);
+          }
+      }
+    }
+  }
+&nbsp;
+  // функція відображення бокової панелі для редагування інфографіки
+  public showSidenav(type: string<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >    this.sidenavType = type;</span>
+<span class="cstat-no" title="statement not covered" >    this.scheduleChanged();</span>
+<span class="cstat-no" title="statement not covered" >    if (type === 'activities') {</span>
+<span class="cstat-no" title="statement not covered" >      $('#sidenavContentTitle').text('Події');</span>
+<span class="cstat-no" title="statement not covered" >      $('#activityBlock').show();</span>
+<span class="cstat-no" title="statement not covered" >      $('#periodBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#signedPointBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#commonPeriodBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      this.activityChanged();</span>
+    } else <span class="cstat-no" title="statement not covered" >if (type === 'commonPeriods') {</span>
+<span class="cstat-no" title="statement not covered" >      $('#sidenavContentTitle').text('Спільні періоди');</span>
+<span class="cstat-no" title="statement not covered" >      $('#activityBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#periodBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#signedPointBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#commonPeriodBlock').show();</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodChanged();</span>
+    } else <span class="cstat-no" title="statement not covered" >if (type === 'periods') {</span>
+<span class="cstat-no" title="statement not covered" >      $('#sidenavContentTitle').text('Періоди');</span>
+<span class="cstat-no" title="statement not covered" >      $('#activityBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#periodBlock').show();</span>
+<span class="cstat-no" title="statement not covered" >      $('#signedPointBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#commonPeriodBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      this.periodChanged();</span>
+    } else <span class="cstat-no" title="statement not covered" >if (type === 'signedPoints') {</span>
+<span class="cstat-no" title="statement not covered" >      $('#sidenavContentTitle').text('Відмічений час');</span>
+<span class="cstat-no" title="statement not covered" >      $('#activityBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#periodBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      $('#signedPointBlock').show();</span>
+<span class="cstat-no" title="statement not covered" >      $('#commonPeriodBlock').hide();</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointChanged();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.sidenav.open();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public rebuildAfterSidenav() {</span>
+    let infoGraphicEl = <span class="cstat-no" title="statement not covered" >this.infoGraphicCanvas.nativeElement;</span>
+<span class="cstat-no" title="statement not covered" >    if (this.sidenav.opened) {</span>
+<span class="cstat-no" title="statement not covered" >      infoGraphicEl.width = window.innerWidth - $('.info-graphic-sidenav').width();</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      infoGraphicEl.width = window.innerWidth;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.infoGraphicDesigner();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public scheduleChanged() {</span>
+    let scheduleIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.scheduleSelected.substring(8), 10);</span>
+<span class="cstat-no" title="statement not covered" >    this.activities = this.infoGraphicData['schedules'][scheduleIndex]['activities'];</span>
+<span class="cstat-no" title="statement not covered" >    this.periods = this.infoGraphicData['schedules'][scheduleIndex]['periods'];</span>
+<span class="cstat-no" title="statement not covered" >    this.signedPoints = this.infoGraphicData['schedules'][scheduleIndex]['signedPoints'];</span>
+<span class="cstat-no" title="statement not covered" >    this.activityChanged();</span>
+<span class="cstat-no" title="statement not covered" >    this.periodChanged();</span>
+<span class="cstat-no" title="statement not covered" >    this.signedPointChanged();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public activityChanged() {</span>
+<span class="cstat-no" title="statement not covered" >    if ((this.activities.length &gt; 0) &amp;&amp; (parseInt(this.activitySelected.substring(8), 10) &gt; -1)) {</span>
+      let activityIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.activitySelected.substring(8), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.activityTitleValue = this.activities[activityIndex]['title'];</span>
+<span class="cstat-no" title="statement not covered" >      this.activityStartTime = this.activities[activityIndex]['startTime'];</span>
+<span class="cstat-no" title="statement not covered" >      this.activityEndTime = this.activities[activityIndex]['endTime'];</span>
+<span class="cstat-no" title="statement not covered" >      this.activityColor = this.activities[activityIndex]['color'];</span>
+<span class="cstat-no" title="statement not covered" >      this.activityToHighlight = (this.activities[activityIndex]['toHighlight'] === 'true');</span>
+<span class="cstat-no" title="statement not covered" >      this.activitySlide.checked = this.activityToHighlight;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.activityTitleValue = '';</span>
+<span class="cstat-no" title="statement not covered" >      this.activityStartTime = '12:00';</span>
+<span class="cstat-no" title="statement not covered" >      this.activityEndTime = '12:00';</span>
+<span class="cstat-no" title="statement not covered" >      this.activityColor = 'green';</span>
+<span class="cstat-no" title="statement not covered" >      this.activityToHighlight = false;</span>
+<span class="cstat-no" title="statement not covered" >      this.activitySlide.checked = this.activityToHighlight;</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public commonPeriodChanged() {</span>
+<span class="cstat-no" title="statement not covered" >    if ((this.commonPeriods.length &gt; 0)</span>
+        &amp;&amp; (parseInt(this.commonPeriodSelected.substring(12), 10) &gt; -1)) {
+      let commonPeriodIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.commonPeriodSelected.substring(12), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodTitleValue = this.commonPeriods[commonPeriodIndex]['title'];</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodStartTime = this.commonPeriods[commonPeriodIndex]['startTime'];</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodEndTime = this.commonPeriods[commonPeriodIndex]['endTime'];</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodTitleValue = '';</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodStartTime = '12:00';</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodEndTime = '12:00';</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public periodChanged() {</span>
+<span class="cstat-no" title="statement not covered" >    if ((this.periods.length &gt; 0) &amp;&amp; (parseInt(this.periodSelected.substring(6), 10) &gt; -1)) {</span>
+      let periodIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.periodSelected.substring(6), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.periodTitleValue = this.periods[periodIndex]['title'];</span>
+<span class="cstat-no" title="statement not covered" >      this.periodStartTime = this.periods[periodIndex]['startTime'];</span>
+<span class="cstat-no" title="statement not covered" >      this.periodEndTime = this.periods[periodIndex]['endTime'];</span>
+<span class="cstat-no" title="statement not covered" >      this.periodBackground = (this.periods[periodIndex]['background'] === 'true');</span>
+<span class="cstat-no" title="statement not covered" >      this.periodSlide.checked = this.periodBackground;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.periodTitleValue = '';</span>
+<span class="cstat-no" title="statement not covered" >      this.periodStartTime = '12:00';</span>
+<span class="cstat-no" title="statement not covered" >      this.periodEndTime = '12:00';</span>
+<span class="cstat-no" title="statement not covered" >      this.periodBackground = false;</span>
+<span class="cstat-no" title="statement not covered" >      this.periodSlide.checked = this.periodBackground;</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public signedPointChanged() {</span>
+<span class="cstat-no" title="statement not covered" >    if ((this.signedPoints.length &gt; 0)</span>
+        &amp;&amp; (parseInt(this.signedPointSelected.substring(11), 10) &gt; -1)) {
+      let signedPointIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.signedPointSelected.substring(11), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointTitleValue = this.signedPoints[signedPointIndex]['title'];</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointTime = this.signedPoints[signedPointIndex]['time'];</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointAlign = (this.signedPoints[signedPointIndex]['align'] === 'left');</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointSlide.checked = this.signedPointAlign;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.signedPointTitleValue = '';</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointTime = '12:00';</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointAlign = false;</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointSlide.checked = this.signedPointAlign;</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public sidenavSave() {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.sidenavType === 'activities') {</span>
+      let activityIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.activitySelected.substring(8), 10);</span>
+<span class="cstat-no" title="statement not covered" >      if (activityIndex &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >        this.activities[activityIndex]['title'] = this.activityTitleEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.activities[activityIndex]['startTime'] = this.activityStartTimeEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.activities[activityIndex]['endTime'] = this.activityEndTimeEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.activities[activityIndex]['color'] = this.activityColorEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.activities[activityIndex]['toHighlight'] = this.activitySlide.checked.toString();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.activities.push({</span>
+          title: this.activityTitleEl.nativeElement.value,
+          startTime: this.activityStartTimeEl.nativeElement.value,
+          endTime: this.activityEndTimeEl.nativeElement.value,
+          color: this.activityColorEl.nativeElement.value,
+          toHighlight: this.activitySlide.checked.toString()
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.activitySelected = 'activity' + (this.activities.length - 1);</span>
+<span class="cstat-no" title="statement not covered" >        this.activityChanged();</span>
+      }
+    } else <span class="cstat-no" title="statement not covered" >if (this.sidenavType === 'periods') {</span>
+      let periodIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.periodSelected.substring(6), 10);</span>
+<span class="cstat-no" title="statement not covered" >      if (periodIndex &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >        this.periods[periodIndex]['title'] = this.periodTitleEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.periods[periodIndex]['startTime'] = this.periodStartTimeEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.periods[periodIndex]['endTime'] = this.periodEndTimeEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.periods[periodIndex]['background'] = this.periodSlide.checked.toString();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.periods.push({</span>
+          title: this.periodTitleEl.nativeElement.value,
+          startTime: this.periodStartTimeEl.nativeElement.value,
+          endTime: this.periodEndTimeEl.nativeElement.value,
+          background: this.periodSlide.checked.toString()
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.periodSelected = 'period' + (this.periods.length - 1);</span>
+<span class="cstat-no" title="statement not covered" >        this.periodChanged();</span>
+      }
+    } else <span class="cstat-no" title="statement not covered" >if (this.sidenavType === 'signedPoints') {</span>
+      let signedPointIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.signedPointSelected.substring(11), 10);</span>
+<span class="cstat-no" title="statement not covered" >      if (signedPointIndex &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >        this.signedPoints[signedPointIndex]['title'] = this.signedPointTitleEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        this.signedPoints[signedPointIndex]['time'] = this.signedPointTimeEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.signedPointSlide.checked) {</span>
+<span class="cstat-no" title="statement not covered" >          this.signedPoints[signedPointIndex]['align'] = 'left';</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.signedPoints[signedPointIndex]['align'] = 'right';</span>
+        }
+      } else {
+        let titleAlign = <span class="cstat-no" title="statement not covered" >'left';</span>
+<span class="cstat-no" title="statement not covered" >        if (this.signedPointSlide.checked) {</span>
+<span class="cstat-no" title="statement not covered" >          titleAlign = 'left';</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          titleAlign = 'right';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.signedPoints.push({</span>
+          title: this.signedPointTitleEl.nativeElement.value,
+          time: this.signedPointTimeEl.nativeElement.value,
+          align: titleAlign
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.signedPointSelected = 'signedPoint' + (this.signedPoints.length - 1);</span>
+<span class="cstat-no" title="statement not covered" >        this.signedPointChanged();</span>
+      }
+    } else <span class="cstat-no" title="statement not covered" >if (this.sidenavType === 'commonPeriods') {</span>
+      let commonPeriodIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.commonPeriodSelected.substring(12), 10);</span>
+      let commonPeriodArray = <span class="cstat-no" title="statement not covered" >this.commonPeriods[commonPeriodIndex];</span>
+<span class="cstat-no" title="statement not covered" >      if (commonPeriodIndex &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >        commonPeriodArray['title'] = this.commonPeriodTitleEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        commonPeriodArray['startTime'] = this.commonPeriodStartTimeEl.nativeElement.value;</span>
+<span class="cstat-no" title="statement not covered" >        commonPeriodArray['endTime'] = this.commonPeriodEndTimeEl.nativeElement.value;</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.commonPeriods.push({</span>
+          title: this.commonPeriodTitleEl.nativeElement.value,
+          startTime: this.commonPeriodStartTimeEl.nativeElement.value,
+          endTime: this.commonPeriodEndTimeEl.nativeElement.value
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.commonPeriodSelected = 'commonPeriod' + (this.commonPeriods.length - 1);</span>
+<span class="cstat-no" title="statement not covered" >        this.commonPeriodChanged();</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    this.infoGraphicDesigner();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public sidenavDelete() {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.sidenavType === 'activities') {</span>
+      let activityIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.activitySelected.substring(8), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.activities.splice(activityIndex, 1);</span>
+<span class="cstat-no" title="statement not covered" >      this.activitySelected = 'activity0';</span>
+<span class="cstat-no" title="statement not covered" >      this.activityChanged();</span>
+    } else <span class="cstat-no" title="statement not covered" >if (this.sidenavType === 'periods') {</span>
+      let periodIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.periodSelected.substring(6), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.periods.splice(periodIndex, 1);</span>
+<span class="cstat-no" title="statement not covered" >      this.periodSelected = 'period0';</span>
+<span class="cstat-no" title="statement not covered" >      this.periodChanged();</span>
+    } else <span class="cstat-no" title="statement not covered" >if (this.sidenavType === 'signedPoints') {</span>
+      let signedPointIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.signedPointSelected.substring(11), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPoints.splice(signedPointIndex, 1);</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointSelected = 'signedPoint0';</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointChanged();</span>
+    } else <span class="cstat-no" title="statement not covered" >if (this.sidenavType === 'commonPeriods') {</span>
+      let commonPeriodIndex = <span class="cstat-no" title="statement not covered" >parseInt(this.commonPeriodSelected.substring(12), 10);</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriods.splice(commonPeriodIndex, 1);</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodSelected = 'commonPeriod0';</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodChanged();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this.infoGraphicDesigner();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public exportFile() {</span>
+    let FileSaver = <span class="cstat-no" title="statement not covered" >require('file-saver');</span>
+    let blob = <span class="cstat-no" title="statement not covered" >new Blob([JSON.stringify(this.infoGraphicData)],</span>
+                       {type: 'application/json;charset=utf-8'});
+<span class="cstat-no" title="statement not covered" >    FileSaver.saveAs(blob, 'infoGraphic.json');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  public readFile(file<span class="fstat-no" title="function not covered" >) {</span></span>
+    let reader = <span class="cstat-no" title="statement not covered" >new FileReader();</span>
+<span class="cstat-no" title="statement not covered" >    reader.onload = (evt<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.infoGraphicData = JSON.parse(evt.target['result']);</span>
+<span class="cstat-no" title="statement not covered" >      this.setNewData(true);</span>
+<span class="cstat-no" title="statement not covered" >      this.infoGraphicDesigner();</span>
+<span class="cstat-no" title="statement not covered" >      this.scheduleChanged();</span>
+<span class="cstat-no" title="statement not covered" >      this.activityChanged();</span>
+<span class="cstat-no" title="statement not covered" >      this.periodChanged();</span>
+<span class="cstat-no" title="statement not covered" >      this.commonPeriodChanged();</span>
+<span class="cstat-no" title="statement not covered" >      this.signedPointChanged();</span>
+    };
+<span class="cstat-no" title="statement not covered" >    reader.readAsText(file);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  public importFile() {</span></span>
+    let fileInput = <span class="cstat-no" title="statement not covered" >document.createElement('input');</span>
+<span class="cstat-no" title="statement not covered" >    fileInput.type = 'file';</span>
+<span class="cstat-no" title="statement not covered" >    $(fileInput).click();</span>
+<span class="cstat-no" title="statement not covered" >    $(fileInput).change((e<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      this.readFile(e.target.files[0]);</span>
+    });
+&nbsp;
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  public exportImage() {</span>
+&nbsp;
+    let FileSaver = <span class="cstat-no" title="statement not covered" >require('file-saver');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.infoGraphicCanvas.nativeElement.toBlob((blob<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      FileSaver.saveAs(blob, 'infoGraphic.png');</span>
+    });
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  public ngOnInit() {</span></span>
+    let infoGraphicEl = <span class="cstat-no" title="statement not covered" >this.infoGraphicCanvas.nativeElement;</span>
+<span class="cstat-no" title="statement not covered" >    infoGraphicEl.width = window.innerWidth;</span>
+<span class="cstat-no" title="statement not covered" >    this.infoGraphicDesigner();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    $(window).on('resize', <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (this.sidenav.opened) {</span>
+<span class="cstat-no" title="statement not covered" >        infoGraphicEl.width = window.innerWidth - $('.info-graphic-sidenav').width();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        infoGraphicEl.width = window.innerWidth;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.infoGraphicDesigner();</span>
+    });
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 24 2018 17:28:35 GMT+0300 (FLE Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

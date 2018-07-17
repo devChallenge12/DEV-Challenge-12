@@ -1,0 +1,38 @@
+@import '../utilities/variables';
+
+html {
+  position: relative;
+  min-height: 100%;
+
+  body {
+    height: 100%;
+    min-height: .1rem;
+  }
+}
+
+p {
+  margin-bottom: 1.6rem;
+  color: $base-light-text;
+}
+
+// General classes for project
+
+.section,
+.info-section {
+  padding: 2rem 0;
+}
+
+@media (min-width: $medium-screen) {
+  .section,
+  .info-section {
+    padding: 5rem 0;
+  }
+
+}
+
+@media (min-width: $xxlarge-screen) {
+  .section,
+  .info-section {
+    padding: 7.7rem 0;
+  }
+}

@@ -1,0 +1,3 @@
+https://devchallenge-qa.atlassian.net/browse/TRIP-12
+https://devchallenge-qa.atlassian.net/browse/TRIP-14
+https://devchallenge-qa.atlassian.net/browse/TRIP-15

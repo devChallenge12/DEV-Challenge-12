@@ -1,0 +1,14 @@
+@import '../utilities/fonts_var';
+
+// Fonts include
+
+@for $i from 1 through length($base-font-data) {
+  @font-face {
+    font-family: $base-font-name;
+    font-style: normal;
+    font-weight: nth(map-get($base-font-data, $i), 5);
+    src: local(nth(map-get($base-font-data, $i), 3)), local(nth(map-get($base-font-data, $i), 4)),
+         url('#{$font-path}#{nth(map-get($base-font-data, $i), 1)}#{nth(map-get($base-font-data, $i), 2)}.woff2') format('woff2'),
+         url('#{$font-path}#{nth(map-get($base-font-data, $i), 1)}#{nth(map-get($base-font-data, $i), 2)}.woff') format('woff');
+  }
+}

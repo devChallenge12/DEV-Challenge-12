@@ -1,0 +1,1634 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for services\syn-auth.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">services/</a> syn-auth.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.85% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>31/184</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.57% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.11% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>29/180</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
+import { Http, Headers, Response, RequestOptions, ResponseType } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
+&nbsp;
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'jquery';
+import {
+    serverTimeUrl,
+    // packageUrl,
+    // packageContentUrl,
+    // contentCollectionUrl,
+    // restUrl,
+    mainUrl,
+    jobUrl
+    } from '../../assets/conf/server.json';
+import * as shajs from 'sha.js';
+&nbsp;
+@Injectable()
+export class SynAuthService {
+    // new variables
+    public readyCallbacks: any;
+    public host: any;
+    public defaultPort: any;
+    public fRoot: any;
+    public user: any;
+    public fcallBack: any;
+    public ffailCallback: any;
+    public fGroup: any;
+    public fMenu: any;
+    public fHomePage: any;
+    public fLocations: any;
+    public connectionReadyPromise: any;
+    public fServerTimeStampOffset: any;
+    public crcTable: any;
+&nbsp;
+    // my
+    public sasLastSessionTickCount: any;
+    public <span class="cstat-no" title="statement not covered" >sasConnection: boolean = false;</span>
+    public sasSessionID: any;
+    public sasSessionIDHexa8: any;
+    public sasSessionPrivateKey: any;
+    public sasAuthTimeStamp: any;
+    public sasHost: any;
+    public sasRoot: any;
+    public sasUser: any;
+    public inmediaSession: object;
+    public loginFlag: boolean;
+    public <span class="cstat-no" title="statement not covered" >waitFlag: boolean = false;</span>
+&nbsp;
+    // old
+    public token: string;
+    // public this = this;
+&nbsp;
+    // my private
+    private passwordHashHexa: any;
+    private <span class="cstat-no" title="statement not covered" >subject = new Subject&lt;any&gt;();</span>
+&nbsp;
+    constructor(private <span class="cstat-no" title="statement not covered" >http: Http<span class="fstat-no" title="function not covered" >)</span> {</span>
+        // let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        // this.token = currentUser &amp;&amp; currentUser.token;
+        // this.getTimestamp()
+        // .then(request: any) =&gt; {}
+<span class="cstat-no" title="statement not covered" >        this.sasCRCTable();</span>
+    }
+&nbsp;
+    public sendMessage(message: string<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >        this.subject.next({ text: message });</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public clearMessage() {</span>
+<span class="cstat-no" title="statement not covered" >        this.subject.next();</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getMessage(): Observable&lt;any&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return this.subject.asObservable();</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    public login(userNameRaw: string, password: string<span class="fstat-no" title="function not covered" >) {</span></span>
+        // const xHeader = new Headers({'Authorization': 'Basic ' + btoa(username + ':' + password),
+        //                              'Content-Type': 'application/json'});
+        // return this.http.post('http://10.100.43.50:8080/api/auth/', {},
+        //                      { headers: xHeader,  withCredentials: true })
+        // .toPromise();
+        let userName = <span class="cstat-no" title="statement not covered" >userNameRaw[0].toUpperCase() + userNameRaw.slice(1).toLowerCase();</span>
+        // console.log('test userName', userName);
+<span class="cstat-no" title="statement not covered" >        this.getTimestamp()</span>
+        .then((request: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            console.log('synAuthService getTimestamp', request.json());</span>
+<span class="cstat-no" title="statement not covered" >            this.sasPing(userName, password, request.json())</span>
+            .then((requestPing: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+                let sasSession = <span class="cstat-no" title="statement not covered" >requestPing.json().result;</span>
+<span class="cstat-no" title="statement not covered" >                console.log('synAuthService sasPing', sasSession);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.sasNonce(sasSession, userName, password)</span>
+                .then((requestSession: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+                    let sasSessionKey = <span class="cstat-no" title="statement not covered" >requestSession.json().result;</span>
+<span class="cstat-no" title="statement not covered" >                    console.log('synAuthService sasNonce', sasSessionKey);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    if (this.sasGetSession(sasSessionKey)) {</span>
+<span class="cstat-no" title="statement not covered" >                        console.log('sasGetSession', 'true');</span>
+                        // console.log('sasSessionSign',
+                        // this.synAuthService.sasSessionSign('rest/distrpackage'));
+&nbsp;
+                        // return this.check();
+<span class="cstat-no" title="statement not covered" >                        this.check();</span>
+&nbsp;
+                        // this.getPackages()
+                        // .then((requestPackages: any) =&gt; {
+&nbsp;
+                        //     // this.synAuthService.checkSession()
+                        //     // .then((requestCheck: any) =&gt; {
+                        //     //     console.log('check session success', requestCheck.json());
+                        //     // })
+                        //     // .catch((requestCheck: any) =&gt; {
+                        //     //     console.log('check session fail');
+                        //     // });
+&nbsp;
+                        // })
+                        // .catch((requestPackages: any) =&gt; {
+                        //     console.log('test getPackages fail');
+                        // });
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        return false;</span>
+                    }
+                })
+                .catch((requestSession: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                if (requestSession['status'] === 403) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.sendMessage('login -&gt; login or password failed');</span>
+                }
+<span class="cstat-no" title="statement not covered" >                console.log('synAuthService sasNonce fail', requestSession['status']);</span>
+                // console.log('Login or Password failed');
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+                });
+            })
+            .catch((requestPing: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                console.log('synAuthService sasPing fail');</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            });
+        })
+        .catch((request: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            console.log('synAuthService getTimeStamp fail');</span>
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        });
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public logout() {</span>
+<span class="cstat-no" title="statement not covered" >        Cookie.delete('inmediaSession');</span>
+<span class="cstat-no" title="statement not covered" >        this.inmediaSession = {};</span>
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    public LogIn(root: any, username: any, password: any, callback: any, failCallback: any<span class="fstat-no" title="function not covered" >) {</span>
+        // let that = this;
+<span class="cstat-no" title="statement not covered" >        this.fRoot = root;</span>
+<span class="cstat-no" title="statement not covered" >        this.user = username;</span>
+<span class="cstat-no" title="statement not covered" >        this.passwordHashHexa = shajs('sha256').update('salt' + password).digest('hex');</span>
+<span class="cstat-no" title="statement not covered" >        if (callback) {</span>
+<span class="cstat-no" title="statement not covered" >            this.fcallBack = callback;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (failCallback) {</span>
+<span class="cstat-no" title="statement not covered" >            this.ffailCallback = failCallback;</span>
+        }
+&nbsp;
+        // $.get(this.host + '/' + root + '/TimeStamp', this.wrap(this.sasPing));
+    }
+&nbsp;
+    public LogInAgain(callback: any<span class="fstat-no" title="function not covered" >) { // after timeout error for silent re-login</span>
+<span class="cstat-no" title="statement not covered" >        this.sasSessionID = 0;</span>
+<span class="cstat-no" title="statement not covered" >        this.sasSessionIDHexa8 = '';</span>
+<span class="cstat-no" title="statement not covered" >        this.sasSessionPrivateKey = 0;</span>
+&nbsp;
+        // if (callback) {
+        //     this.fcallBack = callback;
+        // } else {
+        //     this.fcallBack = null;
+        // }
+&nbsp;
+        // $.get(this.host + '/' + this.fRoot + '/TimeStamp', this.wrap(this.sasPing));
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public check() {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (Cookie.get('inmediaSession')</span>
+            &amp;&amp; Cookie.get('inmediaSession').indexOf('private_key') &gt;= 0) {
+            // console.log('test cookie success');
+<span class="cstat-no" title="statement not covered" >            console.dir(Cookie.get('inmediaSession'));</span>
+            // Cookie.get('cookieName')
+            // JSON.parse(localStorage.getItem('currentUser')
+            let inmediaSession = <span class="cstat-no" title="statement not covered" >JSON.parse(Cookie.get('inmediaSession'));</span>
+            let privateKey = <span class="cstat-no" title="statement not covered" >parseInt(inmediaSession['private_key'], 10);</span>
+            let sessionKey = <span class="cstat-no" title="statement not covered" >inmediaSession['session_key'];</span>
+&nbsp;
+            let path = <span class="cstat-no" title="statement not covered" >'rest/distrpackage';</span>
+<span class="cstat-no" title="statement not covered" >            this.waitFlag = true;</span>
+            // console.log('test get for login', mainUrl + path
+            // + `?session_signature=`
+            // + this.sasSessionSign(path, privateKey, sessionKey) + `&amp;select=*`);
+<span class="cstat-no" title="statement not covered" >            this.http.get(mainUrl + path</span>
+                             + `?session_signature=`
+                             + this.sasSessionSign(path, privateKey, sessionKey) + `&amp;select=*`,
+                            { withCredentials: false })
+            .toPromise()
+            // let path = 'rest/';
+            // this.http.get(mainUrl + path
+            //     + '?session_signature='
+            //     + this.sasSessionSign(path, private_key, session_key),
+            //     // + '&amp;session_id=' + this.sasSessionID,
+            //     { withCredentials: false })
+            //     .toPromise()
+            .then((request: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+                // console.log('check success', request.json());
+<span class="cstat-no" title="statement not covered" >                console.log('check success');</span>
+                // return true;
+<span class="cstat-no" title="statement not covered" >                this.inmediaSession = inmediaSession;</span>
+<span class="cstat-no" title="statement not covered" >                this.waitFlag = false;</span>
+<span class="cstat-no" title="statement not covered" >                this.sendMessage('true');</span>
+            })
+            .catch((request: any<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                console.log('check fail', request);</span>
+<span class="cstat-no" title="statement not covered" >                this.logout();</span>
+                // return false;
+<span class="cstat-no" title="statement not covered" >                this.waitFlag = false;</span>
+<span class="cstat-no" title="statement not covered" >                this.sendMessage('false');</span>
+            });
+        } else {
+<span class="cstat-no" title="statement not covered" >            console.log('cookie fail');</span>
+            // console.log('test cookie fail');
+<span class="cstat-no" title="statement not covered" >            console.dir(Cookie.get('inmediaSession'));</span>
+            // return false;
+<span class="cstat-no" title="statement not covered" >            this.logout();</span>
+            // return false;
+<span class="cstat-no" title="statement not covered" >            this.waitFlag = false;</span>
+<span class="cstat-no" title="statement not covered" >            this.sendMessage('false');</span>
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public checkSession() { // after timeout error for silent re-login</span>
+        // this.sasConnection = false;
+        let path = <span class="cstat-no" title="statement not covered" >'rest/checksession';</span>
+        let inmediaSession = <span class="cstat-no" title="statement not covered" >this.inmediaSession;</span>
+        let sessionSign = <span class="cstat-no" title="statement not covered" >this.sasSessionSign('rest/distrpackage',</span>
+                          inmediaSession['private_key'], inmediaSession['session_key']);
+&nbsp;
+        let sasSessionKeyArr = <span class="cstat-no" title="statement not covered" >inmediaSession['session_key'].split('+');</span>
+        let sasSessionID = <span class="cstat-no" title="statement not covered" >parseInt(sasSessionKeyArr[0], 10);</span>
+        let sasSessionIDHexa8 = <span class="cstat-no" title="statement not covered" >sasSessionID.toString(16);</span>
+        // if (callback) { this.fcallBack = callback; } //else { this.fcallBack = null; }
+        // if (!this.sasSessionID) return this.fcallBack(this);
+        // let that = this;
+        // $.get(this.sasGetURL('root/checksession') + '&amp;session_id='
+        // + this.sasSessionID, this.wrap(this.checkedSession))
+            // .fail(function () {
+            //     return that.fcallBack(that);
+            // });
+        // if (this.sasSessionSign) {
+        // console.log(`http://10.100.43.50:889/rest/root/checksession
+        // ?session_signature=${this.sasSessionSign()}&amp;session_id=${this.sasSessionID}`);
+<span class="cstat-no" title="statement not covered" >        return this.http.get(mainUrl + path</span>
+                            + '?session_signature='
+                            + this.sasSessionSign(path,
+                              inmediaSession['private_key'], inmediaSession['session_key'])
+                            + '&amp;session_id=' + sasSessionID,
+            { withCredentials: false })
+            .toPromise();
+        // } else {
+&nbsp;
+        // }
+&nbsp;
+    }
+&nbsp;
+    public checkedSession(data: any<span class="fstat-no" title="function not covered" >) {</span>
+        const $ = <span class="cstat-no" title="statement not covered" >require('jquery');</span>
+        // console.log('session checked with data', data);
+<span class="cstat-no" title="statement not covered" >        this.fGroup = data.result.group;</span>
+<span class="cstat-no" title="statement not covered" >        this.fMenu = data.result.data.menu;</span>
+<span class="cstat-no" title="statement not covered" >        this.fHomePage = data.result.data.homepage;</span>
+<span class="cstat-no" title="statement not covered" >        this.fLocations = data.result.data.locations || [];</span>
+        // console.log('LOCATIONS DATA',data.result.data);
+<span class="cstat-no" title="statement not covered" >        this.sasConnection = true;</span>
+        let exp = <span class="cstat-no" title="statement not covered" >new Date(Date.now() + 1000000);</span>
+<span class="cstat-no" title="statement not covered" >        this.connectionReadyPromise.resolve(true);</span>
+&nbsp;
+        // console.log('SET COOCKIE', JSON.stringify(this));
+<span class="cstat-no" title="statement not covered" >        $(window).cookies.put('SynSession', JSON.stringify(this), { expires: exp });</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (this.fcallBack != null) {</span>
+<span class="cstat-no" title="statement not covered" >            this.fcallBack(this);</span>
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getTimestamp() {</span>
+<span class="cstat-no" title="statement not covered" >        return this.http.get(mainUrl + 'rest/timestamp',</span>
+                        { withCredentials: false })
+                        .toPromise();
+    }
+&nbsp;
+    public sasPing(userName: string, password: string, timestamp: any<span class="fstat-no" title="function not covered" >) {</span>
+        let d = <span class="cstat-no" title="statement not covered" >new Date();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        timestamp = parseInt(timestamp, 10);</span>
+&nbsp;
+        // this.fServerTimeStampOffset = (timestamp - Math.floor(d.getTime()/10));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.sasAuthTimeStamp = (timestamp - Math.floor(d.getTime() / 10));</span>
+        // $.get(this.host+"/"+this.fRoot+"/auth?UserName="
+        // +this.user, this.wrap(this.gotNonce));
+        // $.get(this.sasHost+"/"+this.sasRoot
+        // +"/auth?UserName="+this.sasUser, this.wrap(this.sasNonce));
+<span class="cstat-no" title="statement not covered" >        return this.http.get(mainUrl + 'rest/auth?UserName=' + userName</span>
+                        + '&amp;pwd=' + password,
+                        { withCredentials: false })
+                        .toPromise();
+    }
+&nbsp;
+    public sasNonce(sasSession: string, userName: string, password: string<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >        this.passwordHashHexa = shajs('sha256').update('salt' + password).digest('hex');</span>
+<span class="cstat-no" title="statement not covered" >        this.sasUser = userName;</span>
+&nbsp;
+        // create client nonce
+        let aClientNonce = <span class="cstat-no" title="statement not covered" >'';</span>
+        let s = <span class="cstat-no" title="statement not covered" >'';</span>
+        let d = <span class="cstat-no" title="statement not covered" >new Date();</span>
+<span class="cstat-no" title="statement not covered" >        aClientNonce = d.getFullYear().toString();</span>
+<span class="cstat-no" title="statement not covered" >        s = d.getMonth().toString();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (s.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >            s = '0' + s;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        aClientNonce = aClientNonce + '-' + s;</span>
+<span class="cstat-no" title="statement not covered" >        s = d.getDate().toString();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (s.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >            s = '0' + s;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        aClientNonce = aClientNonce + '-' + s + ' ';</span>
+<span class="cstat-no" title="statement not covered" >        s = d.getHours().toString();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (s.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >            s = '0' + s;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        aClientNonce = aClientNonce + s;</span>
+<span class="cstat-no" title="statement not covered" >        s = d.getMinutes().toString();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (s.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >            s = '0' + s;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        aClientNonce = aClientNonce + ':' + s;</span>
+<span class="cstat-no" title="statement not covered" >        s = d.getSeconds().toString();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (s.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >            s = '0' + s;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        aClientNonce = aClientNonce + ':' + s;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        aClientNonce = shajs('sha256').update(aClientNonce).digest('hex');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return this.http.get(mainUrl + 'rest/auth?UserName=' + userName</span>
+                    // + '&amp;pwd=' + password + '&amp;Password='
+                    + '&amp;Password='
+                    + shajs('sha256').update('rest' + sasSession
+                    + aClientNonce + userName + this.passwordHashHexa).digest('hex')
+                    + '&amp;ClientNonce=' + aClientNonce,
+                        { withCredentials: false })
+                        .toPromise();
+    }
+&nbsp;
+    public sasGetSession(sasSessionKey: string<span class="fstat-no" title="function not covered" >) {</span>
+        let sasSessionKeyArr = <span class="cstat-no" title="statement not covered" >sasSessionKey.split('+');</span>
+&nbsp;
+        let sasSessionID = <span class="cstat-no" title="statement not covered" >parseInt(sasSessionKeyArr[0], 10);</span>
+        let sasSessionIDHexa8 = <span class="cstat-no" title="statement not covered" >sasSessionID.toString(16);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        while ( sasSessionIDHexa8.length &lt; 8 ) {</span>
+<span class="cstat-no" title="statement not covered" >            sasSessionIDHexa8 = '0' + sasSessionIDHexa8;</span>
+        }
+&nbsp;
+        let sasSessionPrivateKey = <span class="cstat-no" title="statement not covered" >this.crc32(this.passwordHashHexa, this.crc32(sasSessionKey, 0));</span>
+&nbsp;
+        let sessionData = <span class="cstat-no" title="statement not covered" >{</span>
+            user_name: this.sasUser,
+            session_key: sasSessionKey,
+            private_key: sasSessionPrivateKey,
+            // hash_key: this.passwordHashHexa
+        };
+&nbsp;
+        // let exp = new Date(Date.now() + 1000000);
+        let exp: number = <span class="cstat-no" title="statement not covered" >10;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        console.dir(sessionData);</span>
+        // $(window).cookies.put('SynSession', JSON.stringify(this), { expires: exp });
+        // $(window).cookies.put('inmediaSession', JSON.stringify(sessionData), { expires: exp })
+        // $(window).cookie('inmediaSession', JSON.stringify(sessionData), { expires: exp })
+<span class="cstat-no" title="statement not covered" >        Cookie.set('inmediaSession', JSON.stringify(sessionData), exp);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.sasConnection = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return this.sasConnection;</span>
+&nbsp;
+        // this.checkSession(null, null);
+&nbsp;
+    }
+&nbsp;
+    // public sasSessionSign(url: string) {
+    public sasSessionSign(path: string, privateKey: number, sessionKey: string<span class="fstat-no" title="function not covered" >) {</span>
+&nbsp;
+        // this.sessionKey = sessionKey;
+&nbsp;
+        let sasSessionKeyArr = <span class="cstat-no" title="statement not covered" >sessionKey.split('+');</span>
+&nbsp;
+        let sasSessionID = <span class="cstat-no" title="statement not covered" >parseInt(sasSessionKeyArr[0], 10);</span>
+        let sasSessionIDHexa8 = <span class="cstat-no" title="statement not covered" >sasSessionID.toString(16);</span>
+&nbsp;
+        // let params = '', url_no_params = '';
+&nbsp;
+        // if (url.indexOf("?") &gt;= 0) {
+        //     url_no_params = url.substring(0, url.indexOf("?"));
+        //     params ='&amp;'+url.substring(url.indexOf("?")+1);
+        // }
+        // else {
+        //     url_no_params = url;
+        // }
+&nbsp;
+        let Tix;
+        let Nonce;
+        let s;
+        let ss;
+<span class="cstat-no" title="statement not covered" >        Tix = Date.now(); </span>// # of ms since Epoch
+&nbsp;
+        // if (this.sasLastSessionTickCount &gt;= Tix) {
+        //     Tix = Date.now();
+        // }
+&nbsp;
+        // if (!this.sasLastSessionTickCount) {
+        //     this.sasLastSessionTickCount = Tix;
+        // }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.sasLastSessionTickCount = Tix;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        Nonce = this.sasLastSessionTickCount.toString(16);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        while ( Nonce.length &lt; 8 ) {</span>
+<span class="cstat-no" title="statement not covered" >            Nonce = '0' + Nonce;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if ( Nonce.length &gt; 8 ) {</span>
+<span class="cstat-no" title="statement not covered" >            Nonce = Nonce.slice(Nonce.length - 8);</span>
+        }
+&nbsp;
+        // ss = this.crc32(url_no_params, this.crc32(Nonce,
+        // this.sasSessionPrivateKey)).toString(16);
+        // ss = this.crc32(restUrl, this.crc32(Nonce,
+        // this.sasSessionPrivateKey)).toString(16);
+        // ss = this.crc32(packageUrl, this.crc32(Nonce,
+        // this.sasSessionPrivateKey)).toString(16);
+        // ss = this.crc32(path, this.crc32(Nonce, this.sasSessionPrivateKey)).toString(16);
+<span class="cstat-no" title="statement not covered" >        ss = this.crc32(path, this.crc32(Nonce, privateKey)).toString(16);</span>
+<span class="cstat-no" title="statement not covered" >        while ( ss.length &lt; 8 ) {</span>
+<span class="cstat-no" title="statement not covered" >            ss = '0' + ss;</span>
+        }
+&nbsp;
+        // s = url_no_params + '?session_signature='
+&nbsp;
+        // return s + this.sasSessionIDHexa8 + Nonce + ss + params;
+<span class="cstat-no" title="statement not covered" >        return sasSessionIDHexa8 + Nonce + ss;</span>
+&nbsp;
+    }
+&nbsp;
+    public sasGetURL(uri: string<span class="fstat-no" title="function not covered" >) {</span>
+        // return this.host+'/'+this.sasSessionSign(uri);
+    }
+&nbsp;
+    // public logout(callback: any) {
+    // public logout(callback: any) {
+        // return this.http.get(restUrl + "auth?UserName=" + userName + "&amp;Password="
+        //                     + shajs('sha256').update('rest'
+        //                     + sasSession + aClientNonce + userName
+        //                     + this.passwordHashHexa).digest('hex')
+        //                     +'&amp;ClientNonce=' + aClientNonce,
+        //                         { withCredentials: false })
+        //                         .toPromise();
+        // if (this.fSessionID == 0) {if (callback){callback();}} else {
+        //     $(window).cookies.remove('SynSession');
+        //     $.get(this.getURL("root/auth?UserName="
+        //     + this.User + "&amp;Session=" + this.fSessionID), callback);
+        //     this.fRoot = '';
+        //     this.User = '';
+        //     this.fSessionID = 0;
+        //     this.fSessionIDHexa8 = "";
+        //     this.fSessionPrivateKey = 0;
+        //     this.fGroup = "";
+        //     this.fMenu = "";
+        //     this.fMenu = "";
+        //     this.sascConnection = false;
+        //     this.readyCallbacks = [];
+        //     $(window).location.assign('/index.html#/login');
+        // }
+    // }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public sasCRCTable() {</span>
+        let c;
+        let crcTable = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >        for (let n = 0; n &lt; 256; n++) {</span>
+<span class="cstat-no" title="statement not covered" >            c = n;</span>
+<span class="cstat-no" title="statement not covered" >            for (let k = 0; k &lt; 8; k++) {</span>
+<span class="cstat-no" title="statement not covered" >                c = ((c &amp; 1) ? (0xEDB88320 ^ (c &gt;&gt;&gt; 1)) : (c &gt;&gt;&gt; 1));</span>
+            }
+<span class="cstat-no" title="statement not covered" >            crcTable[n] = c;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this.crcTable = crcTable;</span>
+    }
+&nbsp;
+    public crc32(str: string, init: any<span class="fstat-no" title="function not covered" >) {</span>
+        let crc = <span class="cstat-no" title="statement not covered" >(typeof init === undefined) ? 0 ^ (-1) : init ^ 0xFFFFFFFF;</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; str.length; i++ ) {</span>
+<span class="cstat-no" title="statement not covered" >            crc = (crc &gt;&gt;&gt; 8) ^ this.crcTable[(crc ^ str.charCodeAt(i)) &amp; 0xFF];</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return (crc ^ (-1)) &gt;&gt;&gt; 0;</span>
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Apr 06 2018 14:17:12 GMT+0300 (FLE Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

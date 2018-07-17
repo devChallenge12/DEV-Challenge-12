@@ -1,0 +1,55 @@
+.social-list {
+  display: flex;
+  height: 5rem;
+  background-image: linear-gradient(to right, #93eef9 0%, #7443ff 100%);
+  color: $white;
+
+  &-item {
+    @extend %flexCenterChildren;
+    position: relative;
+    width: 16.66666%;
+    border-right: .1rem solid rgba($white, .3);
+    cursor: pointer;
+
+    .icon {
+      font-size: 1.6rem;
+    }
+
+    &:last-child {
+      border: 0;
+    }
+
+    .hover-hint {
+      position: absolute;
+      bottom: 5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 250ms;
+    }
+  }
+}
+
+@media (min-width: $medium-screen) {
+  .social-list {
+    &-item {
+      .icon {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+@media (min-width: $large-screen) {
+  .social-list {
+    height: 22rem;
+
+    &-item {
+      &:hover {
+        .hover-hint {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+}

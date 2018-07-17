@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  api1:
+    container_name: api1
+    build: .
+    environment:
+      - PUBLIC_IP=10.1.0.11
+      - PRIVATE_IP=10.2.0.11
+      - PRIVATE_BROADCAST=10.2.0.255
+      - PUBLIC_PORT=3000
+      - PRIVATE_PORT=3001
+    ports:
+      - 3000:3000
+    networks:
+      public:
+        ipv4_address: 10.1.0.11
+      private:
+        ipv4_address: 10.2.0.11
+  
+  api2:
+    container_name: api2
+    build: .
+    environment:
+      - PUBLIC_IP=10.1.0.12
+      - PRIVATE_IP=10.2.0.12
+      - PRIVATE_BROADCAST=10.2.0.255
+      - PUBLIC_PORT=3000
+      - PRIVATE_PORT=3001
+    ports:
+      - 3001:3000
+    networks:
+      public:
+        ipv4_address: 10.1.0.12
+      private:
+        ipv4_address: 10.2.0.12
+
+networks:
+  public:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.1.0.0/24
+  private:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.2.0.0/24

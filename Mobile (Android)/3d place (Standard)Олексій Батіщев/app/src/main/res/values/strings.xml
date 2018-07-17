@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">arfinal</string>
+    <string name="btn_take_photo">Take Photo</string>
+    <string name="btn_pick_image">Pick Image</string>
+    <string name="btn_modify">Modify</string>
+
+    <string name="modify_image_activity_label">Modify Photo</string>
+    <string name="chose_image_activity_label">Choose photo</string>
+    <string name="debug_mode">Debug Mode</string>
+
+
+    <string name="error_fail_to_create_photo_file">Fail to create photo file</string>
+    <string name="error_no_camera_app">Camera app is not installed</string>
+
+
+    <string name="error_no_one_face_was_detected">No one face was detected</string>
+</resources>

@@ -1,0 +1,14 @@
+.game {
+
+}
+
+.game_info {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  padding: 20px;
+}
+
+.game_info span {
+  color: #777;
+}

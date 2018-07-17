@@ -1,0 +1,69 @@
+server:
+  type: simple
+  applicationContextPath: /
+  connector:
+    type: http
+    port: 8083
+
+logging:
+  level: INFO
+  loggers:
+    it.devchallenge.distdb: DEBUG
+    org: INFO
+    org.apache.cxf: ERROR
+
+    InboundRequestResponse:
+      level: TRACE
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: logs4/protocol_in.log
+          archivedLogFilenamePattern: logs4/protocol_in-%d.log
+          archive: true
+          archivedFileCount: 5
+
+    OutboundRequestResponse:
+      level: TRACE
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: logs4/protocol_out.log
+          archivedLogFilenamePattern: logs4/protocol_out-%d.log
+          archive: true
+          archivedFileCount: 5
+
+  appenders:
+    - type: file
+      currentLogFilename: logs4/distdb.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: logs4/distdb-%d.log;AUTO_SERVER=TRUE
+      timeZone: "UTC"
+      logFormat: "%-5p [%d{ISO8601,UTC}] %c: %m [%t]%n%rEx"
+    - type: console
+      threshold: ALL
+
+swagger:
+  resourcePackage: it.devchallenge.distdb.resource
+
+database:
+  driverClass: org.h2.Driver
+  user: sa
+  password: sa
+  url: jdbc:h2:tcp:localhost:9083/~/distdb
+
+storage: ./storage4
+
+servers:
+  bdc93a74-e0de-44d7-b9dd-6bd0ef8d7b6a: http://localhost:8080
+  a8a7aa39-b882-4fa5-81cd-ae06cb36081b: http://localhost:8081
+  df9f727e-af71-4cd8-9bf7-2bbd5a768dcc: http://localhost:8082
+  ff4047c3-12aa-476b-b00d-9772838a7b5b: http://localhost:8083
+
+serverId: ff4047c3-12aa-476b-b00d-9772838a7b5b
+
+replicationFactor: 3
+
+jerseyClient:
+  timeout: 9000ms
+  workQueueSize: 16

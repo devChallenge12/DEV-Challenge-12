@@ -1,0 +1,9 @@
+.git/
+
+# Directory-based project format:
+.idea/
+.idea
+
+# Dependencies:
+/node_modules
+

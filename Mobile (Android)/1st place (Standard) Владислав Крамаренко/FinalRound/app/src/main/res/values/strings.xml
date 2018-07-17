@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FinalRound</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+</resources>

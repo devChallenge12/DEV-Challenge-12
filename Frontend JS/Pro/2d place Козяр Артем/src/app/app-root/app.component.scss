@@ -1,0 +1,29 @@
+.app-root {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  .header {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    .finish {
+      color: yellow;
+    }
+  }
+
+  .main {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    .canvas {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}

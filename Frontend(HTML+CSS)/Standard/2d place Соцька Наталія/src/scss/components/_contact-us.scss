@@ -1,0 +1,56 @@
+.contact-us {
+  .title {
+    margin: 2rem 0;
+    padding-left: 1.8rem;
+    border-left: .2rem solid $base-color;
+    color: $base-color;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .row:first-child {
+    padding-bottom: 4rem;
+    border-bottom: .1rem solid $base-border;
+  }
+
+  .contacts {
+    padding-top: 4rem;
+
+    &-field {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 300;
+      line-height: 3rem;
+    }
+  }
+}
+
+@media (min-width: $large-screen) {
+  .contact-us {
+    .title {
+      margin-bottom: 4.2rem;
+    }
+
+    .row {
+      padding-bottom: 9.4rem;
+    }
+
+    .button {
+      margin-top: 3.2rem;
+    }
+
+    .contacts {
+      padding-top: 9.9rem;
+
+      &-title {
+        margin: 0 0 4rem;
+        font-size: 3rem;
+        font-weight: 500;
+      }
+
+      &-field {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}

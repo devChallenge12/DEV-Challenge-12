@@ -1,0 +1,23 @@
+.filters-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+
+  .filter {
+    padding: 0 1.4rem;
+    cursor: pointer;
+
+    &.active {
+      font-weight: 500;
+    }
+  }
+}
+
+@media (min-width: $xxlarge-screen) {
+  .filters-list {
+    font-size: 1.8rem;
+    line-height: 10rem;
+  }
+}

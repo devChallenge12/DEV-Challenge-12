@@ -1,0 +1,25 @@
+{
+  "name": "fast_start",
+  "version": "1.0.0",
+  "description": "Fast start html/css/js.",
+  "main": "",
+  "scripts": {
+    "start": "gulp",
+    "test": "test"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-js-minify": "0.0.3",
+    "gulp-less": "^3.3.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rigger": "^0.5.8",
+    "gulp-watch": "^4.3.11",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "rimraf": "^2.5.4"
+  }
+}

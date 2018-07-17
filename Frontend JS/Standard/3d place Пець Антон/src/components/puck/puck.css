@@ -1,0 +1,21 @@
+.puck {
+  --diameter: 100px;
+
+  width: var(--diameter);
+  height: var(--diameter);
+  border-radius: var(--diameter);
+  display: block;
+  background: coral;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0px;
+  left: calc(320px - var(--diameter) / 2);
+  color: white;
+}
+
+.puck-player2 {
+  background: green;
+}

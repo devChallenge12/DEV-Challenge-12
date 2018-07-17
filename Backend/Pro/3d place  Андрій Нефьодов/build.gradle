@@ -1,0 +1,74 @@
+plugins {
+    id "java"
+    id "application"
+    id 'com.github.johnrengelman.shadow' version '1.2.4'
+    id 'net.ltgt.apt' version '0.8'
+    id "io.franzbecker.gradle-lombok" version "1.8"
+
+}
+group 'it.devchallenge'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+// The main class of the application
+mainClassName = 'it.devchallenge.distdb.DistDbApplication'
+
+ext {
+    dropwizardVersion = '1.1.1'
+    liquibaseVersion = '3.5.1'
+    mysqlConnectorVersion = '5.1.38'
+    lombokVersion = '1.16.14'
+    defaultArgs = ['server', 'src/dist/config/distdb.yaml']
+    execArgs = System.getProperty("exec.args")
+}
+
+
+dependencies {
+    testCompile(
+            [group: 'io.dropwizard', name: 'dropwizard-testing', version: dropwizardVersion])
+    compile(
+            [group: 'org.jsoup', name:'jsoup', version: '1.10.2'],
+
+            [group: 'io.dropwizard', name: 'dropwizard-core', version: dropwizardVersion],
+            [group: 'io.dropwizard', name: 'dropwizard-jdbi', version: dropwizardVersion],
+            [group: 'io.dropwizard', name: 'dropwizard-migrations', version: dropwizardVersion],
+            [group: 'io.dropwizard', name: 'dropwizard-auth', version: dropwizardVersion],
+
+            [group: 'org.liquibase', name: 'liquibase-core', version: liquibaseVersion],
+            [group: 'io.dropwizard', name: 'dropwizard-client', version: dropwizardVersion],
+
+            [group: 'com.smoketurner', name: 'dropwizard-swagger', version: '1.0.0-1'],
+            [group: 'com.h2database', name: 'h2', version: '1.4.195'],
+            [group: 'org.mockito', name:'mockito-core', version: '2.8.9'],
+            [group: 'org.glassfish.jersey.media', name:'jersey-media-multipart', version: '2.23.1']
+
+    )
+    apt(group: 'org.projectlombok', name: 'lombok', version: lombokVersion)
+}
+
+// Configure the run task to start the Dropwizard service
+run {
+    args += (execArgs) ? execArgs.split() : defaultArgs
+}
+
+runShadow {
+    args += (execArgs) ? execArgs.split() : defaultArgs
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+    reports.junitXml.destination = file("$buildDir/test-reports")
+}
+
+
+
+shadowJar {
+    mergeServiceFiles()
+}

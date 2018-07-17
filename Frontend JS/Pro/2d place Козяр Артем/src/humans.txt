@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+  Me
+
+# THANKS
+
+  My team for not getting so annoyed that they hit me.
+
+# TECHNOLOGY COLOPHON
+
+  Angular 6, HTML5, ES2018, SASS+CSS3
