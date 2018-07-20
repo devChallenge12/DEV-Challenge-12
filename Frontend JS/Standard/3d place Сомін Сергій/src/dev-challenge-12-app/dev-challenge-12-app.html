@@ -1,0 +1,103 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="dev-challenge-12-game.html">
+
+<dom-module id="dev-challenge-12-app">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <h2>[[title]]!</h2>
+
+
+        <iron-pages selected="{{currentPage}}">
+
+            <div>
+                Start game
+
+                <button on-click="startFriendGame">Play with friend</button>
+                <button on-click="startComputerGame">Play with computer</button>
+            </div>
+
+            <dev-challenge-12-game id="game" computer-opponent="[[computerOpponent]]" on-game-over="onGameOver"></dev-challenge-12-game>
+
+            <div>
+                <div>Game ended</div>
+                <div>{{endGameMessage}}</div>
+                <div>Team A Score: {{teamAScore}}</div>
+                <div>Team B Score: {{teamBScore}}</div>
+            </div>
+        </iron-pages>
+
+
+
+    </template>
+    <script>
+        
+        /**
+        * @customElement
+        * @polymer
+        */
+        class DevChallenge12App extends Polymer.Element {
+            static get is() { return 'dev-challenge-12-app'; }
+            static get properties() {
+                return {
+                    title: {
+                        type: String,
+                        value: 'dev-challenge-12-app'
+                    },
+
+                    currentPage: {
+                        type: Number,
+                        value: 0
+                    },
+
+                    computerOpponent: {
+                        type: Boolean
+                    },
+
+                    endGameMessage: {
+                        type: String
+                    },
+
+                    teamAScore: {
+                        type: String
+                    },
+
+                    teamBScore: {
+                        type: String
+                    }
+                };
+            }
+            
+            startFriendGame() {
+                this.currentPage = 1;
+                this.$.game.start();
+            }
+
+            startComputerGame() {
+                this.computerOpponent = true;
+                this.currentPage = 1;
+                
+                this.$.game.start();
+
+            }
+
+            onGameOver(event) {
+                let gameData = event.detail;
+
+                this.endGameMessage = gameData.message;
+
+                this.teamAScore = gameData.teamAScore;
+                this.teamBScore = gameData.teamBScore;
+
+                this.currentPage = 2;
+            }
+
+        }
+
+        window.customElements.define(DevChallenge12App.is, DevChallenge12App);
+    </script>
+</dom-module>

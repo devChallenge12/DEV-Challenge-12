@@ -1,0 +1,431 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="dev-challenge-12-game">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <div>Controll ball by clicking mouse while it is behind red line;</div>
+        <div>Further the click away from ball - more force is applied to it;</div>
+        <div>After it has left red line behind, you cannot controll ball;</div>
+        <div>Dont click too often and too far away, because ball can be thrown out of screen bounds quite easily.</div>
+        <canvas id='canvas'></canvas>
+    </template>
+    <script>
+        class Team {
+            constructor (id, color, isComputer) {
+                this.id = id;
+                this.ballsPerTurn = 2;
+
+                this.color = color;      //
+                this.ballsRemaining = 2; //set it to 20 for 10 round game (smal value is for testing)
+                this.turnBallsRemaning = this.ballsPerTurn;
+                this.isComputer = isComputer;
+            }
+
+            startTurn() {
+                this.turnBallsRemaning = this.ballsPerTurn;
+            }
+
+            turnBallsEnded() {
+                this.ballsRemaining--;
+                this.turnBallsRemaning--;
+
+                return !this.turnBallsRemaning;
+            }
+
+            hasEnded() {
+                return !this.ballsRemaining;
+            }
+
+            calculateScore(ballList, target) { // calculates scores - distances of balls to target, highest score - defeat
+                let score = 0;
+
+                ballList.filter(ball => ball.teamId == this.id).forEach((el) => {
+                    score += target.getDistanceToBall(el);
+                });
+
+                return score;
+            }
+        }
+
+        class Target {
+            constructor(canvas, x, y) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.x = x;
+                this.y = y;
+            }
+
+            draw() {
+
+                this.ctx.lineWidth = 5;
+                this.ctx.strokeStyle = '#ff0000';
+                this.ctx.beginPath();
+                this.ctx.arc(this.x,this.y, 6, 0, 2*Math.PI);
+                this.ctx.stroke();
+                
+                this.ctx.lineWidth = 5;
+                this.ctx.strokeStyle = '#0000ff';
+                this.ctx.beginPath();
+                this.ctx.arc(this.x,this.y, 100, 0, 2*Math.PI);
+                this.ctx.stroke();
+                
+                this.ctx.lineWidth = 1;
+                this.ctx.strokeStyle = '#000000';
+            }
+
+            getDistanceToBall(ball) {
+                return Math.sqrt(Math.pow(this.x - ball.currVector[0], 2) + Math.pow(this.y - ball.currVector[1], 2));
+            }
+
+        }
+
+        class Ball {
+            
+            constructor(canvas, x, y, forceEndY, color, teamId, onBallStop) {
+
+                this.teamId = teamId;
+                this.ballStopped = false;
+
+                this.startVector = [x, y]; // x, y
+                this.currVector = this.startVector.slice();
+
+                this.radius = 30;
+
+                this.color = color;
+                
+                
+                this.forceEndY = forceEndY;
+
+                this.velocityX = 0;
+                this.velocityY = 0;
+                this.slowdownRate = 20;
+                this._canvas = canvas;
+                this._ctx = canvas.getContext('2d');
+                this.onBallStop = onBallStop;
+            }
+
+            isAfterEndLine() {
+                return (this.currVector[1] - this.forceEndY) < 0;
+            }
+
+            slowDown(velocity, slowdownVelocity) {
+                if(velocity > 0) {
+                    velocity -= slowdownVelocity;
+                } else {
+                    velocity += slowdownVelocity;
+                }
+
+                return velocity;
+            }
+
+            update(deltaTime) { //delta time in seconds
+                
+                if(Math.abs(this.velocityX) > 0.5) {
+
+                    this.currVector[0] += this.velocityX * deltaTime;
+                    this.velocityX = this.slowDown(this.velocityX, this.slowdownRate * deltaTime);
+                    
+                } else {
+                    this.velocityX = 0;
+                }
+
+                if(Math.abs(this.velocityY) > 0.5) {
+                    this.currVector[1] += this.velocityY * deltaTime;
+                    this.velocityY = this.slowDown(this.velocityY, this.slowdownRate * deltaTime);
+                } else {
+                    this.velocityY = 0;
+                }
+
+                // console.log('this.ballStopped: ', this.ballStopped);
+                // console.log('Math.abs(this.velocityX): ', Math.abs(this.velocityX));
+                // console.log('Math.abs(this.velocityY): ', Math.abs(this.velocityY));
+                // console.log('this.isAfterEndLine(): ', this.isAfterEndLine());
+
+                if(!this.ballStopped
+                 && this.isAfterEndLine()
+                 && Math.abs(this.velocityX) == 0 
+                 && Math.abs(this.velocityY) == 0) {
+                     this.ballStopped = true;
+                     if(this.onBallStop) {
+                        this.onBallStop(this);
+                     }
+                }
+            }
+
+            draw() {
+                this._ctx.beginPath();
+                this._ctx.strokeStyle = this.color;
+                this._ctx.lineWidth = 3;
+                this._ctx.arc(this.currVector[0],this.currVector[1], this.radius, 0, 2*Math.PI);
+                this._ctx.stroke();
+            }
+            
+            addForce(x, y) { // add force with direction
+                if(this.isAfterEndLine()) {
+                    return;
+                }
+                this.velocityX += x;
+                this.velocityY += y;
+            }
+
+            getDistanceToBall(ball) {
+                return Math.sqrt(Math.pow(this.currVector[0] - ball.currVector[0], 2) + Math.pow(this.currVector[1] - ball.currVector[1], 2));
+            }
+
+
+            //fix collision
+            collide(ball) {
+
+                if(!this.velocityX && !ball.velocityX && !this.velocityY && !ball.velocityY) {
+                    this.addForce(0, 100);
+                    ball.addForce(0, -100);
+                    return;
+                }
+
+                let halfVelX;
+                let halfVelY;
+                
+                if(Math.abs(this.velocityX) > 0) {
+                    halfVelX = this.velocityX / 2; //dumping attacking ball throwback
+                    ball.velocityX = halfVelX;
+                    this.velocityX = -halfVelX / 2;
+                } else {
+                    halfVelX = ball.velocityX / 2
+                    this.velocityX = halfVelX;
+                    ball.velocityX = -halfVelX / 2;
+                }
+
+                if(Math.abs(this.velocityY) > 0) {
+                    halfVelY = this.velocityY / 2;
+                    ball.velocityY = halfVelY;
+                    this.velocityY = -halfVelY / 2; 
+                } else {
+                    halfVelY = ball.velocityY / 2;
+                    this.velocityY = halfVelY;
+                    ball.velocityY = -halfVelY / 2;
+                }
+            }
+        }
+
+        class Game {
+
+            constructor(computerOpponent) {
+                this.computerOpponent = computerOpponent;
+                console.log('this.computerOpponent: ', this.computerOpponent);
+            }
+
+            _getMousePosition(event, canvas) {
+                let rect = canvas.getBoundingClientRect();
+                return [event.clientX - rect.left, event.clientY - rect.top];
+            }
+
+            createNewBall(team) {
+                let newBall = new Ball(this._canvas, this._canvas.width / 2, this._canvas.height - 100, this.forceEndY, team.color, team.id, (ball) => this.onBallStop(ball))
+                this.ballList.push(newBall);
+                this.currentBall = newBall;
+            }
+
+            onCanvasClick(event) {
+                let clickVector = this._getMousePosition(event, this._canvas);
+                
+                if(this.currentBall && !this.currentTeam.isComputer) {
+                    let forceVectorX = this.currentBall.currVector[0] - clickVector[0];
+                    let forceVectorY = this.currentBall.currVector[1] - clickVector[1];
+                
+                    this.currentBall.addForce(forceVectorX, forceVectorY);
+                }
+            }   
+
+            drawForceEnd() {
+                this.ctx.beginPath();
+                this.ctx.moveTo(0, this.forceEndY);
+                this.ctx.lineTo(this._canvas.width, this.forceEndY);
+                this.ctx.lineWidth = 10;
+                this.ctx.strokeStyle = '#ff0000';
+                this.ctx.stroke();
+
+                this.ctx.lineWidth = 1;
+                this.ctx.strokeStyle = '#000000';
+            }
+
+            checkCollisions() {
+                var ballCheckArray = this.ballList.slice();
+                
+                for(let i = 0; i < ballCheckArray.length; i++) {
+                    for(let j = i + 1; j < ballCheckArray.length; j++) {
+                        
+                        let ballA = ballCheckArray[i];
+                        let ballB = ballCheckArray[j];
+
+                        if(ballA.getDistanceToBall(ballB) < (ballA.radius + ballB.radius)) {
+                            if(ballCheckArray[i].velocityX == 0 && ballCheckArray[i].velocityX) {
+                                ballCheckArray[j].collide(ballCheckArray[i]);
+                            } else {
+                                ballCheckArray[i].collide(ballCheckArray[j]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            loop(timestamp) {
+                this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);                
+                this.drawForceEnd();
+
+                if(!this.lastRender) {
+                    this.lastRender = timestamp;
+                    window.requestAnimationFrame(this.loop.bind(this));
+                    return;
+                }
+
+                let deltaTime = timestamp - this.lastRender;
+                this.lastRender = timestamp;
+
+                this.checkCollisions();
+
+                this.target.draw();
+
+                this.ballList.forEach((ball) => {
+                    ball.update(deltaTime / 1000);
+                    ball.draw();
+                });                
+
+                window.requestAnimationFrame(this.loop.bind(this));
+            }
+
+            normalize(point, scale) {
+                var norm = Math.sqrt(point.x * point.x + point.y * point.y);
+                if (norm != 0) { // as3 return 0,0 for a point of zero length
+                    point.x = scale * point.x / norm;
+                    point.y = scale * point.y / norm;
+                }
+
+                return point;
+            }
+
+            onBallStop(ball) {
+                if(this.currentTeam.turnBallsEnded()) {
+                    if(this.currentTeam.id == 0) {
+                        this.currentTeam = this.teamB;
+                    } else {
+                        this.currentTeam = this.teamA;
+                    }
+
+                    this.currentTeam.startTurn();
+                }
+                
+                if(this.teamA.hasEnded() && this.teamB.hasEnded()) {
+                    this.gameOver();
+                    return;
+                }
+
+                this.createNewBall(this.currentTeam);
+                
+
+                if(this.currentTeam.isComputer) {
+                    
+                    let centerMostBall = this.ballList.sort( (a, b) => {
+                        let aDist = this.target.getDistanceToBall(a);
+                        let bDist = this.target.getDistanceToBall(b);
+
+                        if(aDist >= bDist) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+
+                    })[0];
+                    
+                    let xForce = centerMostBall.currVector[0] - this.currentBall.currVector[0];
+                    let yForce = centerMostBall.currVector[1] - this.currentBall.currVector[1];
+                    
+                    let target = this.normalize({x: xForce, y: yForce}, 200);
+
+                    this.currentBall.addForce(target.x, target.y);
+                }
+            }
+
+            gameOver() {
+                let teamAScore = this.teamA.calculateScore(this.ballList, this.target);
+                let teamBScore = this.teamB.calculateScore(this.ballList, this.target);
+                
+                let message = '';
+
+                if(teamAScore > teamBScore) {
+                    message = 'Team B (blue) won';
+                } else if(teamAScore < teamBScore) {
+                    message = 'Team A (red) won';
+                } else {
+                    message = 'It s draw';
+                }
+
+                if(this.onGameOver) {
+                    this.onGameOver({message: message, teamAScore: teamAScore, teamBScore: teamBScore});
+                }
+            }
+
+            init(canvas) {
+                this._canvas = canvas;
+                this._canvas.style.border = '1px solid black';
+
+                this._canvas.onclick = (ev) => this.onCanvasClick(ev, this._canvas);
+
+                this.ctx = this._canvas.getContext('2d');
+                this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+
+                this.forceEndY = this._canvas.height - 300;
+                
+                this.target = new Target(this._canvas, this._canvas.width / 2, 250);
+
+                this.teamA = new Team(0, '#ff0000', false);
+                this.teamB = new Team(1, '#0000ff', this.computerOpponent);
+
+                this.currentTeam = this.teamA;
+                this.currentTeam.startTurn();
+
+                this.ballList = [];
+                this.createNewBall(this.currentTeam);
+                
+                window.requestAnimationFrame(this.loop.bind(this));
+            }
+        }
+
+        /**
+        * @customElement
+        * @polymer
+        */
+        class DevChallenge12Game extends Polymer.Element {
+            static get is() { return 'dev-challenge-12-game'; }
+            static get properties() {
+                return {
+                    computerOpponent: {
+                        type: Boolean,
+                        value: false
+                    }
+                };
+            }
+
+            start() {
+
+                let _canvas = this.$.canvas;
+                _canvas.width  = 640;
+                _canvas.height = 960;
+
+                let ctx = _canvas.getContext('2d');
+
+                this.game = new Game(this.computerOpponent);
+                this.game.init(_canvas);
+                
+                this.game.onGameOver = (gameData) => this.dispatchEvent(new CustomEvent('game-over', {detail: gameData})); ;
+
+            }
+        }
+
+        window.customElements.define(DevChallenge12Game.is, DevChallenge12Game);
+    </script>
+</dom-module>
